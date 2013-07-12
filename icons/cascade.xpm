@@ -1,0 +1,23 @@
+/* XPM */
+static char*cascade[]={
+"16 16 4 1",
+"a c #0000ff",
+"# c None",
+". c #585858",
+"b c #ffffff",
+"..........######",
+".aaaaaaaa.######",
+".aaaaaaaa.######",
+".bbbbbbbb.######",
+".bb..........###",
+".bb.aaaaaaaa.###",
+".bb.aaaaaaaa.###",
+".bb.bbbbbbbb.###",
+".bb.bbbbbbbb.###",
+".bb.bbbbbbbb.###",
+"....bbbbbbbb.###",
+"###.bbbbbbbb.###",
+"###.bbbbbbbb.###",
+"###.bbbbbbbb.###",
+"###..........###",
+"################"};

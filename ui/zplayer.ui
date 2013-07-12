@@ -1,0 +1,900 @@
+<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
+<class>CLPlayerWin</class>
+<widget class="QMainWindow">
+    <property name="name">
+        <cstring>CLPlayerWin</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>523</width>
+            <height>354</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Player</string>
+    </property>
+    <property name="icon">
+        <pixmap>image0</pixmap>
+    </property>
+</widget>
+<menubar>
+    <property name="name">
+        <cstring>mbrMain</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>523</width>
+            <height>24</height>
+        </rect>
+    </property>
+    <property name="lineWidth">
+        <number>1</number>
+    </property>
+    <item text="&amp;File" name="fileMenu">
+        <action name="acFileNew"/>
+        <action name="acFileOpen"/>
+        <separator/>
+        <action name="acFileSave"/>
+        <action name="acFileSaveAs"/>
+        <separator/>
+        <action name="acFileClose"/>
+        <action name="acFileExit"/>
+    </item>
+    <item text="&amp;Video" name="unnamed">
+        <action name="acVideoBackward"/>
+        <action name="acVideoPlay"/>
+        <action name="acVideoForward"/>
+        <action name="acVideoStop"/>
+        <separator/>
+        <action name="acVideoLoop"/>
+        <action name="acVideoLock"/>
+    </item>
+    <separator/>
+    <item text="&amp;Help" name="helpMenu">
+        <action name="acHelpContents"/>
+        <separator/>
+        <action name="acHelpAboutApp"/>
+        <action name="acHelpAboutQt"/>
+        <separator/>
+        <action name="acHelpWhatsThis"/>
+    </item>
+</menubar>
+<toolbars>
+    <toolbar dock="2">
+        <property name="name">
+            <cstring>tbrFile</cstring>
+        </property>
+        <property name="resizeEnabled">
+            <bool>false</bool>
+        </property>
+        <property name="horizontallyStretchable">
+            <bool>false</bool>
+        </property>
+        <property name="newLine">
+            <bool>false</bool>
+        </property>
+        <property name="opaqueMoving">
+            <bool>false</bool>
+        </property>
+        <property name="label">
+            <string>Toolbar_2</string>
+        </property>
+        <action name="acFileOpen"/>
+        <action name="acFileSave"/>
+        <separator/>
+        <action name="acFileExit"/>
+    </toolbar>
+    <toolbar dock="2">
+        <property name="name">
+            <cstring>tbrVideo</cstring>
+        </property>
+        <property name="resizeEnabled">
+            <bool>false</bool>
+        </property>
+        <property name="horizontallyStretchable">
+            <bool>true</bool>
+        </property>
+        <property name="newLine">
+            <bool>false</bool>
+        </property>
+        <property name="opaqueMoving">
+            <bool>true</bool>
+        </property>
+        <property name="label">
+            <string>Toolbar</string>
+        </property>
+        <action name="acVideoBackward"/>
+        <action name="acVideoPlay"/>
+        <action name="acVideoForward"/>
+        <action name="acVideoStop"/>
+        <separator/>
+        <action name="acVideoLoop"/>
+        <action name="acVideoLock"/>
+        <separator/>
+        <widget class="QSlider">
+            <property name="name">
+                <cstring>sldFrame</cstring>
+            </property>
+            <property name="minValue">
+                <number>1</number>
+            </property>
+            <property name="maxValue">
+                <number>300</number>
+            </property>
+            <property name="orientation">
+                <enum>Horizontal</enum>
+            </property>
+        </widget>
+        <separator/>
+        <widget class="QLabel">
+            <property name="name">
+                <cstring>lblFrame</cstring>
+            </property>
+            <property name="paletteForegroundColor">
+                <color>
+                    <red>0</red>
+                    <green>255</green>
+                    <blue>0</blue>
+                </color>
+            </property>
+            <property name="paletteBackgroundColor">
+                <color>
+                    <red>0</red>
+                    <green>0</green>
+                    <blue>0</blue>
+                </color>
+            </property>
+            <property name="frameShape">
+                <enum>LineEditPanel</enum>
+            </property>
+            <property name="frameShadow">
+                <enum>Sunken</enum>
+            </property>
+            <property name="text">
+                <string>000000</string>
+            </property>
+        </widget>
+        <separator/>
+        <widget class="QSpinBox">
+            <property name="name">
+                <cstring>sbxFreq</cstring>
+            </property>
+            <property name="palette">
+                <palette>
+                    <active>
+                        <color>
+                            <red>0</red>
+                            <green>0</green>
+                            <blue>0</blue>
+                        </color>
+                        <color>
+                            <red>192</red>
+                            <green>192</green>
+                            <blue>192</blue>
+                        </color>
+                        <color>
+                            <red>255</red>
+                            <green>255</green>
+                            <blue>255</blue>
+                        </color>
+                        <color>
+                            <red>223</red>
+                            <green>223</green>
+                            <blue>223</blue>
+                        </color>
+                        <color>
+                            <red>96</red>
+                            <green>96</green>
+                            <blue>96</blue>
+                        </color>
+                        <color>
+                            <red>128</red>
+                            <green>128</green>
+                            <blue>128</blue>
+                        </color>
+                        <color>
+                            <red>0</red>
+                            <green>255</green>
+                            <blue>0</blue>
+                        </color>
+                        <color>
+                            <red>255</red>
+                            <green>255</green>
+                            <blue>255</blue>
+                        </color>
+                        <color>
+                            <red>0</red>
+                            <green>0</green>
+                            <blue>0</blue>
+                        </color>
+                        <color>
+                            <red>0</red>
+                            <green>0</green>
+                            <blue>0</blue>
+                        </color>
+                        <color>
+                            <red>0</red>
+                            <green>0</green>
+                            <blue>0</blue>
+                        </color>
+                        <color>
+                            <red>0</red>
+                            <green>0</green>
+                            <blue>0</blue>
+                        </color>
+                        <color>
+                            <red>0</red>
+                            <green>255</green>
+                            <blue>0</blue>
+                        </color>
+                        <color>
+                            <red>0</red>
+                            <green>0</green>
+                            <blue>0</blue>
+                        </color>
+                        <color>
+                            <red>0</red>
+                            <green>0</green>
+                            <blue>255</blue>
+                        </color>
+                        <color>
+                            <red>255</red>
+                            <green>0</green>
+                            <blue>255</blue>
+                        </color>
+                    </active>
+                    <disabled>
+                        <color>
+                            <red>128</red>
+                            <green>128</green>
+                            <blue>128</blue>
+                        </color>
+                        <color>
+                            <red>192</red>
+                            <green>192</green>
+                            <blue>192</blue>
+                        </color>
+                        <color>
+                            <red>255</red>
+                            <green>255</green>
+                            <blue>255</blue>
+                        </color>
+                        <color>
+                            <red>220</red>
+                            <green>220</green>
+                            <blue>220</blue>
+                        </color>
+                        <color>
+                            <red>96</red>
+                            <green>96</green>
+                            <blue>96</blue>
+                        </color>
+                        <color>
+                            <red>128</red>
+                            <green>128</green>
+                            <blue>128</blue>
+                        </color>
+                        <color>
+                            <red>0</red>
+                            <green>96</green>
+                            <blue>0</blue>
+                        </color>
+                        <color>
+                            <red>255</red>
+                            <green>255</green>
+                            <blue>255</blue>
+                        </color>
+                        <color>
+                            <red>128</red>
+                            <green>128</green>
+                            <blue>128</blue>
+                        </color>
+                        <color>
+                            <red>0</red>
+                            <green>0</green>
+                            <blue>0</blue>
+                        </color>
+                        <color>
+                            <red>0</red>
+                            <green>0</green>
+                            <blue>0</blue>
+                        </color>
+                        <color>
+                            <red>0</red>
+                            <green>0</green>
+                            <blue>0</blue>
+                        </color>
+                        <color>
+                            <red>0</red>
+                            <green>96</green>
+                            <blue>0</blue>
+                        </color>
+                        <color>
+                            <red>0</red>
+                            <green>0</green>
+                            <blue>0</blue>
+                        </color>
+                        <color>
+                            <red>0</red>
+                            <green>0</green>
+                            <blue>255</blue>
+                        </color>
+                        <color>
+                            <red>255</red>
+                            <green>0</green>
+                            <blue>255</blue>
+                        </color>
+                    </disabled>
+                    <inactive>
+                        <color>
+                            <red>0</red>
+                            <green>0</green>
+                            <blue>0</blue>
+                        </color>
+                        <color>
+                            <red>192</red>
+                            <green>192</green>
+                            <blue>192</blue>
+                        </color>
+                        <color>
+                            <red>255</red>
+                            <green>255</green>
+                            <blue>255</blue>
+                        </color>
+                        <color>
+                            <red>220</red>
+                            <green>220</green>
+                            <blue>220</blue>
+                        </color>
+                        <color>
+                            <red>96</red>
+                            <green>96</green>
+                            <blue>96</blue>
+                        </color>
+                        <color>
+                            <red>128</red>
+                            <green>128</green>
+                            <blue>128</blue>
+                        </color>
+                        <color>
+                            <red>0</red>
+                            <green>255</green>
+                            <blue>0</blue>
+                        </color>
+                        <color>
+                            <red>255</red>
+                            <green>255</green>
+                            <blue>255</blue>
+                        </color>
+                        <color>
+                            <red>0</red>
+                            <green>0</green>
+                            <blue>0</blue>
+                        </color>
+                        <color>
+                            <red>0</red>
+                            <green>0</green>
+                            <blue>0</blue>
+                        </color>
+                        <color>
+                            <red>0</red>
+                            <green>0</green>
+                            <blue>0</blue>
+                        </color>
+                        <color>
+                            <red>0</red>
+                            <green>0</green>
+                            <blue>0</blue>
+                        </color>
+                        <color>
+                            <red>0</red>
+                            <green>255</green>
+                            <blue>0</blue>
+                        </color>
+                        <color>
+                            <red>0</red>
+                            <green>0</green>
+                            <blue>0</blue>
+                        </color>
+                        <color>
+                            <red>0</red>
+                            <green>0</green>
+                            <blue>255</blue>
+                        </color>
+                        <color>
+                            <red>255</red>
+                            <green>0</green>
+                            <blue>255</blue>
+                        </color>
+                    </inactive>
+                </palette>
+            </property>
+            <property name="suffix">
+                <string> Hz</string>
+            </property>
+            <property name="maxValue">
+                <number>100</number>
+            </property>
+            <property name="minValue">
+                <number>1</number>
+            </property>
+            <property name="value">
+                <number>30</number>
+            </property>
+        </widget>
+        <separator/>
+        <action name="acHelpWhatsThis"/>
+    </toolbar>
+</toolbars>
+<actions>
+    <action>
+        <property name="name">
+            <cstring>acFileOpen</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>image1</iconset>
+        </property>
+        <property name="text">
+            <string>Open</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Open...</string>
+        </property>
+        <property name="toolTip">
+            <string>Open file</string>
+        </property>
+        <property name="statusTip">
+            <string>Open sequence file.</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+O</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>acFileSave</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>image2</iconset>
+        </property>
+        <property name="text">
+            <string>Save</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Save</string>
+        </property>
+        <property name="toolTip">
+            <string>Save file</string>
+        </property>
+        <property name="statusTip">
+            <string>Save sequence file.</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+S</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>acFileSaveAs</cstring>
+        </property>
+        <property name="text">
+            <string>Save As</string>
+        </property>
+        <property name="menuText">
+            <string>Save &amp;As...</string>
+        </property>
+        <property name="accel">
+            <string></string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>acFileExit</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>image3</iconset>
+        </property>
+        <property name="text">
+            <string>Exit</string>
+        </property>
+        <property name="menuText">
+            <string>E&amp;xit</string>
+        </property>
+        <property name="toolTip">
+            <string>Exit program</string>
+        </property>
+        <property name="statusTip">
+            <string>Exit program.</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+Q</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>acHelpContents</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>image4</iconset>
+        </property>
+        <property name="text">
+            <string>Contents</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Contents...</string>
+        </property>
+        <property name="statusTip">
+            <string>Contents.</string>
+        </property>
+        <property name="accel">
+            <string></string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>acHelpAboutApp</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>image0</iconset>
+        </property>
+        <property name="text">
+            <string>&amp;About Player...</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;About Player...</string>
+        </property>
+        <property name="toolTip">
+            <string>About Player</string>
+        </property>
+        <property name="statusTip">
+            <string>About this player.</string>
+        </property>
+        <property name="accel">
+            <string></string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>acHelpAboutQt</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>image5</iconset>
+        </property>
+        <property name="text">
+            <string>About</string>
+        </property>
+        <property name="menuText">
+            <string>About &amp;Qt...</string>
+        </property>
+        <property name="accel">
+            <string></string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>acHelpWhatsThis</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>image6</iconset>
+        </property>
+        <property name="text">
+            <string>What's This</string>
+        </property>
+        <property name="menuText">
+            <string>What's &amp;This</string>
+        </property>
+        <property name="toolTip">
+            <string>What's This</string>
+        </property>
+        <property name="statusTip">
+            <string>Enter what's this mode.</string>
+        </property>
+        <property name="accel">
+            <string>Shift+F1</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>acVideoBackward</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>image7</iconset>
+        </property>
+        <property name="text">
+            <string>Backward</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Backward</string>
+        </property>
+        <property name="toolTip">
+            <string>Backward</string>
+        </property>
+        <property name="statusTip">
+            <string>Step backward.</string>
+        </property>
+        <property name="accel">
+            <string>B</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>acVideoPlay</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>image8</iconset>
+        </property>
+        <property name="text">
+            <string>Play</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Play</string>
+        </property>
+        <property name="toolTip">
+            <string>Play/Pause</string>
+        </property>
+        <property name="statusTip">
+            <string>Play/Pause sequence.</string>
+        </property>
+        <property name="accel">
+            <string>P</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>acVideoForward</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>image9</iconset>
+        </property>
+        <property name="text">
+            <string>Forward</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Forward</string>
+        </property>
+        <property name="toolTip">
+            <string>Forward</string>
+        </property>
+        <property name="statusTip">
+            <string>Step forward.</string>
+        </property>
+        <property name="accel">
+            <string>F</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>acVideoStop</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>image10</iconset>
+        </property>
+        <property name="text">
+            <string>Stop</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Stop</string>
+        </property>
+        <property name="toolTip">
+            <string>Stop</string>
+        </property>
+        <property name="statusTip">
+            <string>Stop playing sequence.</string>
+        </property>
+        <property name="accel">
+            <string>S</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>acVideoLoop</cstring>
+        </property>
+        <property name="toggleAction">
+            <bool>true</bool>
+        </property>
+        <property name="iconSet">
+            <iconset>image11</iconset>
+        </property>
+        <property name="text">
+            <string>Loop</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Loop</string>
+        </property>
+        <property name="toolTip">
+            <string>Enter loop mode.</string>
+        </property>
+        <property name="statusTip">
+            <string>Loop.</string>
+        </property>
+        <property name="accel">
+            <string>L</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>acVideoLock</cstring>
+        </property>
+        <property name="toggleAction">
+            <bool>true</bool>
+        </property>
+        <property name="iconSet">
+            <iconset>image12</iconset>
+        </property>
+        <property name="text">
+            <string>Lock</string>
+        </property>
+        <property name="menuText">
+            <string>Loc&amp;k</string>
+        </property>
+        <property name="toolTip">
+            <string>Lock actions</string>
+        </property>
+        <property name="statusTip">
+            <string>Lock video actions.</string>
+        </property>
+        <property name="accel">
+            <string>K</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>acFileNew</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>image13</iconset>
+        </property>
+        <property name="text">
+            <string>New</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;New</string>
+        </property>
+        <property name="toolTip">
+            <string>New</string>
+        </property>
+        <property name="statusTip">
+            <string>Start new video window.</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+N</string>
+        </property>
+    </action>
+    <action>
+        <property name="name">
+            <cstring>acFileClose</cstring>
+        </property>
+        <property name="iconSet">
+            <iconset>image14</iconset>
+        </property>
+        <property name="text">
+            <string>Close</string>
+        </property>
+        <property name="menuText">
+            <string>&amp;Close</string>
+        </property>
+        <property name="toolTip">
+            <string>Close window</string>
+        </property>
+        <property name="statusTip">
+            <string>Close active window.</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+W</string>
+        </property>
+    </action>
+</actions>
+<images>
+    <image name="image0">
+        <data format="XPM.GZ" length="515">789c6590c14ac4301086ef7d8ad0de8a741bb3918af8088a47413ccc4c92cd1e5641d78388ef6eff34c9d6dd9f1ce6fb3213c26c7af5fcf4a0fa4df379a4e35e9444fa50bdfb3a1cbe5f5eef7f9a56df289c51e9f6aa690725eaf1fdcda3eee6ba1b53803ba0d16634a9938196ecad25a0034ea634c705273d19a000694b9ab6c000145b9a6941b9160bf4c010caedd0fdcb90be7696c5510d737592c3cef19963e7bdab8e39ab501d66b2da659766b2e295f3455517669954ec4eef8545c9c9cdef87a4d60ebf855ab918233347a4b8cb1d5ceceaf7aef903514a7b8a</data>
+    </image>
+    <image name="image1">
+        <data format="XPM.GZ" length="484">789c7d8f4d0ac2301046f739c5d0d915b1168954c423282e0571319d24e8a20a5a1722dedd4cd2da16a91f4998f732e4274b61bfdb409aa97b4df599814f7483d43caaea7938ae5f2ac917e04701793251c91418b6d78b951a7d8db310412758cc5bb482acf532a21174aec8237244224d82654463890529a273acc3a5df20a25f070ec3c4615fecfd71d838c4785093f0199220b65bc195bd60e7b84de718bb348e511a8d31d65a87a36ea8a6a36ea8feb8fe4bbc7bafd40766196f0b</data>
+    </image>
+    <image name="image2">
+        <data format="XPM.GZ" length="515">789c7d8ccb0e82301045f77c454377c40ca0604c8c9fa07169625c94d2161768a2b830c67fb7b7046804bd7d64cee974e2881df65b16c5c1bd11cd593259891b8bca475d3f8fa7cd2b08d325c34e581ace82b06292edae1785bab0354f5c80b2c3d502481dca1ca83bd41a68802213a9c880022873396f47a90edbbf25b05458400ed436ed2b11f13e169ce3c405626f4e05fdec23d7e78eefa6fa261c79aa777efe3839647025a29422ed3b22abccd899b1335f4e1119cf55d66116a2e1deebe003b8af710c</data>
+    </image>
+    <image name="image3">
+        <data format="XPM.GZ" length="424">789c9d90c10ac2300c86ef7d8ad0dc8a6c961529888fa07814c4435a053d4c41e741c477774967e6554309ffff9134696b079bf5125c6d6e1d75a70cf9485770fb7bdb3eb6bbc5d3583f83fe04f076626c05195697f38135f61aa7126c896d6ca28f0ddbc49602790ad2580271103f32c2c29094117e18436149da86940a236911c65258b95df31f4cb7fc9a21a133d258a8bbf0ce54aa74673125c6b75555124a49fee035376fa50b502f</data>
+    </image>
+    <image name="image4">
+        <data format="XPM.GZ" length="530">789c6dd0b16ac33010c6f1dd4f217c9b094ad43a2150f2082d1d03a5c35992650d49214d8752faeed1772707925678d0ff6721d95a7666fffa6cba65f379e673f6c64f7c325df83a1cbedfde773f4deb36068f33ae5d34ad35debc7c1c23e654e6b492818c9afdaa979593e6d66d1f9141d33ff83572d01ccb408e48eed9718f4c48bf9e177b2496ea413ca7becd73ea56560611e9c45e8d9899fe335d7a6bc3009d8d8a790a015a8d8640a03262b54281a2581cd54081120925312135909c415136a26912524b51b452b59ca195d468ccd04af59b4553bafbdfa2e9cfbdd8eb55d9f6f7a9b900d2b37b0f</data>
+    </image>
+    <image name="image5">
+        <data format="XPM.GZ" length="803">789c65d04b6e83301006e03da7b06017550de69182aa2e72804a5d56aaba181b301048420221a4eaddebc73824e988cdf77becb1592ec8e7c73b592c9d630f7dc5092fe14016d9d0b6d3d7f7db8fe3d215915f9012ea3e39ae209c78be2ec50219191e9089e15933b1dc21b9616948f1a84991fa149b3bcd24c0937bc5c0b73c6aa6213243e2de9362482db9620471ea278a80cc0cd78a71b08a0d6b2436579a60b947e2de56f1254c90a36212a6486608d4708bc4411b4d66d928a6110b0c2f96543f6140ae0c73458838ae7a485c7d56cce2a2403e94cebcbb826bc6789601bbcd722884ac02f2390351568cd5a5806bc68a72e3794dbbdd15cc665cec65d41dda5a366276144c46a21f9838d92c134c46a26bc6390351b5e7be131d9ff7ca19db7650adf30cd9b8abc7910b315dfedd7912ebdbb7c149bead59e737d9e33f80fb727f5f9d3fd5e0b88d</data>
+    </image>
+    <image name="image6">
+        <data format="XPM.GZ" length="409">789cd3d7528808f055d0d2e72a2e492cc94c5648ce482c52d04a29cdcdad8c8eb5ade6523234530022630543251d2e253d856405bffcbc54105b19c85636303031303000711321dcb43408570f0d9028a60c0430122e9698a80c2307a5181637931706b5d65c00a56f4f3f</data>
+    </image>
+    <image name="image7">
+        <data format="XPM.GZ" length="394">789cd3d7528808f055d0d2e72a2e492cc94c5648ce482c52d04a29cdcdad8c8eb5ade6523234530022230543251d2e253d856405bffcbc54105b19c856360003b0141a204b4c59198c91c49495d1c59495d1c59495d1c594958913c3a617bb1dd8dd82ddcda48741ad351700980c444d</data>
+    </image>
+    <image name="image8">
+        <data format="XPM.GZ" length="394">789cd3d7528808f055d0d2e72a2e492cc94c5648ce482c52d04a29cdcdad8c8eb5ade6523234530022230543251d2e253d856405bffcbc54105b19c856360003b0141a20514c59199b18922892185c14450c2a8a26061625428c183b8871337961506bcd05001ce14529</data>
+    </image>
+    <image name="image9">
+        <data format="XPM.GZ" length="394">789cd3d7528808f055d0d2e72a2e492cc94c5648ce482c52d04a29cdcdad8c8eb5ade6523234530022230543251d2e253d856405bffcbc54105b19c856360003b0141a20494c59590f8c31c5e0a2286250513431b0288618904d94183176107233b961506bcd0500912c444d</data>
+    </image>
+    <image name="image10">
+        <data format="XPM.GZ" length="394">789cd3d7528808f055d0d2e72a2e492cc94c5648ce482c52d04a29cdcdad8c8eb5ade6523234530022230543251d2e253d856405bffcbc54105b19c856360003b0141aa0869832140c5631aaf9b7d69a0b00046344fd</data>
+    </image>
+    <image name="image11">
+        <data format="XPM.GZ" length="394">789cd3d7528808f055d0d2e72a2e492cc94c5648ce482c52d04a29cdcdad8c8eb5ade6523234530022230543251d2e253d856405bffcbc54105b19c856360003b0949e9e321c0039103165656441bc627a60409c185437d45e3db832a02ccc2d7ab8cdd383bb0fe65828007b0bee0322dd822e46947fd1c2aad69a0b00376e4227</data>
+    </image>
+    <image name="image12">
+        <data format="XPM.GZ" length="499">789c8d90b10ac2301040f77cc5d16c45da54ab54c44f501c0571482f4d74a882d641c47fb7d76b212db4f8c870ef9170903884e36107612c9e95aeae0878d10f08cdab2cdfa7f3f623826405f5594312cc441001c2fe7e2b6836f52c954a9552a48e354b582d2bce590b566b5925695a5f6545d26cd1694e8acb4e3529bd648d068c3539a069ba47db720f9c68e823c77698014d2b7ab4cd7ab889e67cccd88ebffee5bb113f0f8d7ad6</data>
+    </image>
+    <image name="image13">
+        <data format="XPM.GZ" length="454">789c9d8bcb0a02211440f77ec545774338994c0c449f50b40ca2855e935acc04352d22faf7aecea3c120a8a388e778cd33d86e5690e5ecda98e68480477381ccddaaeabedb2f1f8cab39d0a6834f183780b03ed787701774175ae9a98e4f18b4d4a52a755019140b9c6111d405f544abb657efe3b0141d8690b26b361263da6c8c49a3f8f197485aecf8b5b97ebddb90fe987303bfb7116d33d2e008c99f0bf60295c372f4</data>
+    </image>
+    <image name="image14">
+        <data format="XPM.GZ" length="860">789c45d1cb8e9b301406e07d9e0225bba89a091808a8ea825c96adbaac5475e10b047327d810a8faeef539b6660c42fe7e1d5be6f8fde8fdfaf9dd3bbeef264595e41e2fe9d33b0addb6ebef3fdffeeef67eec999710cfdf7fd9eddf3ceefde8bb1ce637333f0427788057c7d0f2824c832448819b23b75c81c4272782db2e8ea165864c4942b0583972cb1918fae129c4e2d131b4ac91344c420a1c1cb9e5048c82e81405c0ca31b2ec91344a232c168ec29203e320f6632cce1d234b89a4711a6371e9282c19f04ccefe99001bc7c8b243b2737a66c0c251583e810949fc048b5bc7c892225922122cbe03539e8a94035f401a529f86c08763647940729a532cd6c00207deb51907cab8c88b07cc5d46192b251755dd7c646dd3751d93bc1f46ee32da146dfbecca5c4cb52a313bb0aed5ba2d98d4ba9e97179e1e335d308d99c45e95dd134233ccda65c6de4bd6150544fd34aa75c3ebe1b264b05057c39cad17bc14c17369d78e6ad9326c67d50b5858994fb65ef1571ff53099eda761d47abddcee78e666accd18676536bb0af76f5ccdb352d962a2faa307e5b22cebba5d6fe2b32f6f2f396f978cdfb157ffbeeefe03fae7dc03</data>
+    </image>
+</images>
+<connections>
+    <connection>
+        <sender>acFileOpen</sender>
+        <signal>activated()</signal>
+        <receiver>CLPlayerWin</receiver>
+        <slot>fileOpen()</slot>
+    </connection>
+    <connection>
+        <sender>acFileSave</sender>
+        <signal>activated()</signal>
+        <receiver>CLPlayerWin</receiver>
+        <slot>fileSave()</slot>
+    </connection>
+    <connection>
+        <sender>acFileSaveAs</sender>
+        <signal>activated()</signal>
+        <receiver>CLPlayerWin</receiver>
+        <slot>fileSaveAs()</slot>
+    </connection>
+    <connection>
+        <sender>acFileExit</sender>
+        <signal>activated()</signal>
+        <receiver>CLPlayerWin</receiver>
+        <slot>fileExit()</slot>
+    </connection>
+    <connection>
+        <sender>acHelpAboutApp</sender>
+        <signal>activated()</signal>
+        <receiver>CLPlayerWin</receiver>
+        <slot>helpIndex()</slot>
+    </connection>
+    <connection>
+        <sender>acHelpContents</sender>
+        <signal>activated()</signal>
+        <receiver>CLPlayerWin</receiver>
+        <slot>helpContents()</slot>
+    </connection>
+    <connection>
+        <sender>acHelpAboutQt</sender>
+        <signal>activated()</signal>
+        <receiver>CLPlayerWin</receiver>
+        <slot>helpAbout()</slot>
+    </connection>
+</connections>
+<slots>
+    <slot>fileNew()</slot>
+    <slot>fileOpen()</slot>
+    <slot>fileSave()</slot>
+    <slot>fileSaveAs()</slot>
+    <slot>filePrint()</slot>
+    <slot>fileExit()</slot>
+    <slot>editUndo()</slot>
+    <slot>editRedo()</slot>
+    <slot>editCut()</slot>
+    <slot>editCopy()</slot>
+    <slot>editPaste()</slot>
+    <slot>editFind()</slot>
+    <slot>helpIndex()</slot>
+    <slot>helpContents()</slot>
+    <slot>helpAbout()</slot>
+</slots>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>
