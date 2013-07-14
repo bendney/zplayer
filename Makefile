@@ -7,58 +7,58 @@
 
 ####### Compiler, tools and options
 
-CC	=	gcc
-CXX	=	g++
+CC		=	gcc
+CXX		=	g++
 CFLAGS	=	-pipe -Wall -W -O3 -D_REENTRANT -DQT_THREAD_SUPPORT -DNO_DEBUG
 CXXFLAGS=	-pipe -Wall -W -O3 -D_REENTRANT -DQT_THREAD_SUPPORT -DNO_DEBUG
 INCPATH	=	-I$(QTDIR)/usr/include/qt3
 LINK	=	g++
 LFLAGS	=	
 LIBS	=	$(SUBLIBS) -L$(QTDIR)/lib -L/usr/X11R6/lib -lpthread -lqt-mt -lXext -lX11 -lm
-MOC	=	$(QTDIR)/usr/bin/moc
-UIC	=	$(QTDIR)/usr/bin/uic
+MOC		=	$(QTDIR)/usr/bin/moc
+UIC		=	$(QTDIR)/usr/bin/uic
 
-TAR	=	tar -cf
+TAR		=	tar -cf
 GZIP	=	gzip -9f
 
 ####### Files
 
-HEADERS =	icons.h \
-		fileopendlg.h \
-		filesavedlg.h \
-		playerdoc.h \
-		playerview.h \
-		playerwin.h \
-		video.h
+HEADERS =	icons.h			\
+			fileopendlg.h 	\
+			filesavedlg.h 	\
+			playerdoc.h 	\
+			playerview.h 	\
+			playerwin.h 	\
+			video.h
 SOURCES =	fileopendlg.cpp \
-		filesavedlg.cpp \
-		main.cpp \
-		playerdoc.cpp \
-		playerview.cpp \
-		playerwin.cpp \
-		video.cpp
-OBJECTS =	fileopendlg.o \
-		filesavedlg.o \
-		main.o \
-		playerdoc.o \
-		playerview.o \
-		playerwin.o \
-		video.o
-INTERFACES =	
-UICDECLS =	
-UICIMPLS =	
+			filesavedlg.cpp \
+			main.cpp 		\
+			playerdoc.cpp 	\
+			playerview.cpp 	\
+			playerwin.cpp 	\
+			video.cpp
+OBJECTS =	fileopendlg.o 	\
+			filesavedlg.o 	\
+			main.o 			\
+			playerdoc.o 	\
+			playerview.o 	\
+			playerwin.o 	\
+			video.o
+INTERFACES	=	
+UICDECLS 	=	
+UICIMPLS 	=	
 SRCMOC	=	moc_fileopendlg.cpp \
-		moc_filesavedlg.cpp \
-		moc_playerdoc.cpp \
-		moc_playerview.cpp \
-		moc_playerwin.cpp \
-		moc_video.cpp
-OBJMOC	=	moc_fileopendlg.o \
-		moc_filesavedlg.o \
-		moc_playerdoc.o \
-		moc_playerview.o \
-		moc_playerwin.o \
-		moc_video.o
+			moc_filesavedlg.cpp \
+			moc_playerdoc.cpp 	\
+			moc_playerview.cpp 	\
+			moc_playerwin.cpp 	\
+			moc_video.cpp
+OBJMOC	=	moc_fileopendlg.o 	\
+			moc_filesavedlg.o 	\
+			moc_playerdoc.o 	\
+			moc_playerview.o 	\
+			moc_playerwin.o 	\
+			moc_video.o
 DIST	=	
 TARGET	=	zplayer
 INTERFACE_DECL_PATH = .
