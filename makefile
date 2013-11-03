@@ -21,7 +21,11 @@ UIC		=	$(QTDIR)/usr/bin/uic
 TAR		=	tar -cf
 GZIP	=	gzip -9f
 
-####### Files
+################# Files ###############
+
+INTERFACES	=	
+UICDECLS 	=	
+UICIMPLS 	=	
 
 HEADERS =	icons.h			\
 			fileopendlg.h 	\
@@ -30,6 +34,7 @@ HEADERS =	icons.h			\
 			playerview.h 	\
 			playerwin.h 	\
 			video.h
+
 SOURCES =	fileopendlg.cpp \
 			filesavedlg.cpp \
 			main.cpp 		\
@@ -37,6 +42,7 @@ SOURCES =	fileopendlg.cpp \
 			playerview.cpp 	\
 			playerwin.cpp 	\
 			video.cpp
+
 OBJECTS =	fileopendlg.o 	\
 			filesavedlg.o 	\
 			main.o 			\
@@ -44,15 +50,14 @@ OBJECTS =	fileopendlg.o 	\
 			playerview.o 	\
 			playerwin.o 	\
 			video.o
-INTERFACES	=	
-UICDECLS 	=	
-UICIMPLS 	=	
+
 SRCMOC	=	moc_fileopendlg.cpp \
 			moc_filesavedlg.cpp \
 			moc_playerdoc.cpp 	\
 			moc_playerview.cpp 	\
 			moc_playerwin.cpp 	\
 			moc_video.cpp
+
 OBJMOC	=	moc_fileopendlg.o 	\
 			moc_filesavedlg.o 	\
 			moc_playerdoc.o 	\
@@ -63,7 +68,7 @@ DIST	=
 TARGET	=	zplayer
 INTERFACE_DECL_PATH = .
 
-####### Implicit rules
+############## Implicit rules ###############
 
 .SUFFIXES: .cpp .cxx .cc .C .c
 
@@ -82,8 +87,7 @@ INTERFACE_DECL_PATH = .
 .c.o:
 	$(CC) -c $(CFLAGS) $(INCPATH) -o $@ $<
 
-####### Build rules
-
+##################### Build rules ####################
 
 all: $(TARGET)
 
@@ -92,10 +96,10 @@ $(TARGET): $(UICDECLS) $(OBJECTS) $(OBJMOC)
 
 moc: $(SRCMOC)
 
-tmake: Makefile
+#tmake: Makefile
 
-Makefile: zplayer.pro
-	tmake zplayer.pro -o Makefile
+#Makefile: zplayer.pro
+#	tmake zplayer.pro -o Makefile
 
 dist:
 	$(TAR) zplayer.tar zplayer.pro $(SOURCES) $(HEADERS) $(INTERFACES) $(DIST)
@@ -113,53 +117,46 @@ clean:
 
 ####### Compile
 
-fileopendlg.o: fileopendlg.cpp \
+fileopendlg.o: fileopendlg.cpp 	\
 		fileopendlg.h
 
-filesavedlg.o: filesavedlg.cpp \
+filesavedlg.o: filesavedlg.cpp 	\
 		filesavedlg.h
 
-main.o: main.cpp \
+main.o: main.cpp 				\
 		playerwin.h
 
-playerdoc.o: playerdoc.cpp \
-		playerdoc.h \
-		playerview.h \
+playerdoc.o: playerdoc.cpp 		\
+		playerdoc.h 			\
+		playerview.h 			\
 		video.h
 
-playerview.o: playerview.cpp \
-		playerview.h \
+playerview.o: playerview.cpp 	\
+		playerview.h 			\
 		video.h
 
-playerwin.o: playerwin.cpp \
-		icons.h \
-		fileopendlg.h \
-		filesavedlg.h \
-		playerdoc.h \
-		playerview.h \
-		playerwin.h \
+playerwin.o: playerwin.cpp		\
+		icons.h 				\
+		fileopendlg.h 			\
+		filesavedlg.h 			\
+		playerdoc.h 			\
+		playerview.h 			\
+		playerwin.h 			\
 		video.h
 
-video.o: video.cpp \
-		video.h
+video.o: video.cpp video.h
 
-moc_fileopendlg.o: moc_fileopendlg.cpp \
-		fileopendlg.h
+moc_fileopendlg.o: moc_fileopendlg.cpp fileopendlg.h
 
-moc_filesavedlg.o: moc_filesavedlg.cpp \
-		filesavedlg.h
+moc_filesavedlg.o: moc_filesavedlg.cpp filesavedlg.h
 
-moc_playerdoc.o: moc_playerdoc.cpp \
-		playerdoc.h
+moc_playerdoc.o: moc_playerdoc.cpp playerdoc.h
 
-moc_playerview.o: moc_playerview.cpp \
-		playerview.h
+moc_playerview.o: moc_playerview.cpp playerview.h
 
-moc_playerwin.o: moc_playerwin.cpp \
-		playerwin.h
+moc_playerwin.o: moc_playerwin.cpp  playerwin.h
 
-moc_video.o: moc_video.cpp \
-		video.h
+moc_video.o: moc_video.cpp video.h
 
 moc_fileopendlg.cpp: fileopendlg.h
 	$(MOC) fileopendlg.h -o moc_fileopendlg.cpp

@@ -77,17 +77,17 @@
 
 inline void yuvToRGB( int iY, int iU, int iV, int &iR, int &iG, int &iB )
 {
-  iR = iY + 1402*iV/1000;
-  iG = iY - ( 101004*iU + 209599*iV )/293500;
-  iB = iY + 1772*iU/1000;
+	iR = iY + 1402*iV/1000;
+	iG = iY - ( 101004*iU + 209599*iV )/293500;
+	iB = iY + 1772*iU/1000;
 
-  if ( iR < 0 ) iR = 0;
-  if ( iG < 0 ) iG = 0;
-  if ( iB < 0 ) iB = 0;
+	if ( iR < 0 ) iR = 0;
+	if ( iG < 0 ) iG = 0;
+	if ( iB < 0 ) iB = 0;
 
-  if ( iR > 255 ) iR = 255;
-  if ( iG > 255 ) iG = 255;
-  if ( iB > 255 ) iB = 255;
+	if ( iR > 255 ) iR = 255;
+	if ( iG > 255 ) iG = 255;
+	if ( iB > 255 ) iB = 255;
 } // End of yuvToRGB.
 
 
@@ -97,95 +97,95 @@ inline void yuvToRGB( int iY, int iU, int iV, int &iR, int &iG, int &iB )
 
 class CLVideo : public QWidget // cl_vid
 {
-  Q_OBJECT
+	Q_OBJECT
 
-  private:
+	private:
 
-  bool bAllFramesInMemory;
+		bool bAllFramesInMemory;
 
-  // Frame buffer.
-  uchar *uchBuffer;
+		// Frame buffer.
+		uchar *uchBuffer;
 
-  // Size of frame buffer.
-  int iBufferSize;
+		// Size of frame buffer.
+		int iBufferSize;
 
-  // The current frame to be displayed.
-  int iCurrFrame;
-  int iNumberOfFrames;
+		// The current frame to be displayed.
+		int iCurrFrame;
+		int iNumberOfFrames;
 
-  int iVideoSizeX;
-  int iVideoSizeY;
+		int iVideoSizeX;
+		int iVideoSizeY;
 
-  int iColorSpace;
+		int iColorSpace;
 
-  double dFrequency;
+		double dFrequency;
 
-  QFile flIn;
+		QFile flIn;
 
-  QImage imgFrame;
+		QImage imgFrame;
 
-  QPixmap *pxmFrame;
-
-
-  private:
-
-  void loadFrame( int iFrame );
-  void loadAllFrames( void );
-
-  void showCurrentFrame( void );
+		QPixmap *pxmFrame;
 
 
-  protected:
+	private:
 
-  virtual void paintEvent( QPaintEvent *evPaint );
-  virtual void mouseMoveEvent( QMouseEvent *evMouse );
-  virtual void leaveEvent( QEvent *evLeave );
+		void loadFrame( int iFrame );
+		void loadAllFrames( void );
 
-
-  public:
-
-  enum ENColorSpace
-  {
-    YUV400 = 0,
-    YUV420 = 1,
-    YUV422 = 2,
-    YUV444 = 3
-  };
-
-  uchar * buffer( void ) const;
-
-  const QPixmap & frame( void ) const;
-
-  int numberOfFrames( void ) const;
-
-  int currentFrame( void ) const;
-  void setCurrentFrame( int iFrame );
-
-  void showFirstFrame( void );
-  void showLastFrame ( void );
-
-  void showPrevFrame( void );
-  void showNextFrame( void );
-
-  bool load( const QString &strName,
-             int iVidSizeX, int iVidSizeY, int iColSpace,
-             bool bAllFrames = false );
-
-  bool save( const QString &strName,
-             bool bAddHeader, bool bSelFrames,
-             int iFrameFrom, int iFrameTo, int iFrameStep );
-
-  // Constructor(s) and destructor.
-
-  CLVideo( QWidget *wgtParent = NULL,
-           const char *szName = NULL, WFlags wf = 0 );
-
-  virtual ~CLVideo( void );
+		void showCurrentFrame( void );
 
 
-  signals:
+	protected:
 
-  void message( const QString &strText );
+		virtual void paintEvent( QPaintEvent *evPaint );
+		virtual void mouseMoveEvent( QMouseEvent *evMouse );
+		virtual void leaveEvent( QEvent *evLeave );
+
+
+	public:
+
+		enum ENColorSpace
+		{
+			YUV400 = 0,
+			YUV420 = 1,
+			YUV422 = 2,
+			YUV444 = 3
+		};
+
+		uchar * buffer( void ) const;
+
+		const QPixmap & frame( void ) const;
+
+		int numberOfFrames( void ) const;
+
+		int currentFrame( void ) const;
+		void setCurrentFrame( int iFrame );
+
+		void showFirstFrame( void );
+		void showLastFrame ( void );
+
+		void showPrevFrame( void );
+		void showNextFrame( void );
+
+		bool load( const QString &strName,
+				int iVidSizeX, int iVidSizeY, int iColSpace,
+				bool bAllFrames = false );
+
+		bool save( const QString &strName,
+				bool bAddHeader, bool bSelFrames,
+				int iFrameFrom, int iFrameTo, int iFrameStep );
+
+		// Constructor(s) and destructor.
+
+		CLVideo( QWidget *wgtParent = NULL,
+				const char *szName = NULL, WFlags wf = 0 );
+
+		virtual ~CLVideo( void );
+
+
+	signals:
+
+		void message( const QString &strText );
 }; // End of class CLVideo
 
 
@@ -195,16 +195,16 @@ class CLVideo : public QWidget // cl_vid
 
 inline void CLVideo::showCurrentFrame( void )
 {
-  if ( bAllFramesInMemory )
-  {
-    bitBlt( this, 0, 0, &pxmFrame[iCurrFrame - 1] );
-    return;
-  }
+	if ( bAllFramesInMemory )
+	{
+		bitBlt( this, 0, 0, &pxmFrame[iCurrFrame - 1] );
+		return;
+	}
 
-  if ( flIn.isOpen( ) )
-    loadFrame( iCurrFrame );
+	if ( flIn.isOpen( ) )
+		loadFrame( iCurrFrame );
 
-  bitBlt( this, 0, 0, &pxmFrame[0] );
+	bitBlt( this, 0, 0, &pxmFrame[0] );
 } // End of showCurrentFrame.
 
 
@@ -214,11 +214,11 @@ inline void CLVideo::showCurrentFrame( void )
 
 inline void CLVideo::showFirstFrame( void )
 {
-  if ( iNumberOfFrames < 1 )
-    return;
+	if ( iNumberOfFrames < 1 )
+		return;
 
-  iCurrFrame = 1;
-  showCurrentFrame( );
+	iCurrFrame = 1;
+	showCurrentFrame( );
 } // End of showFirstFrame.
 
 
@@ -228,11 +228,11 @@ inline void CLVideo::showFirstFrame( void )
 
 inline void CLVideo::showLastFrame( void )
 {
-  if ( iNumberOfFrames < 1 )
-    return;
+	if ( iNumberOfFrames < 1 )
+		return;
 
-  iCurrFrame = iNumberOfFrames;
-  showCurrentFrame( );
+	iCurrFrame = iNumberOfFrames;
+	showCurrentFrame( );
 } // End of showLastFrame.
 
 
@@ -242,11 +242,11 @@ inline void CLVideo::showLastFrame( void )
 
 inline void CLVideo::showPrevFrame( void )
 {
-  if ( iCurrFrame <= 1 )
-    return;
+	if ( iCurrFrame <= 1 )
+		return;
 
-  --iCurrFrame;
-  showCurrentFrame( );
+	--iCurrFrame;
+	showCurrentFrame( );
 } // End of showPrevFrame.
 
 
@@ -256,11 +256,11 @@ inline void CLVideo::showPrevFrame( void )
 
 inline void CLVideo::showNextFrame( void )
 {
-  if ( iCurrFrame >= iNumberOfFrames )
-    return;
+	if ( iCurrFrame >= iNumberOfFrames )
+		return;
 
-  ++iCurrFrame;
-  showCurrentFrame( );
+	++iCurrFrame;
+	showCurrentFrame( );
 } // End of showNextFrame.
 
 
@@ -270,7 +270,7 @@ inline void CLVideo::showNextFrame( void )
 
 inline int CLVideo::currentFrame( void ) const
 {
-  return iCurrFrame;
+	return iCurrFrame;
 } // End of currentFrame.
 
 
@@ -280,12 +280,12 @@ inline int CLVideo::currentFrame( void ) const
 
 inline void CLVideo::setCurrentFrame( int iFrame )
 {
-  if ( iFrame < 1 ||
-       iFrame > iNumberOfFrames )
-    return;
+	if ( iFrame < 1 ||
+			iFrame > iNumberOfFrames )
+		return;
 
-  iCurrFrame = iFrame;
-  showCurrentFrame( );
+	iCurrFrame = iFrame;
+	showCurrentFrame( );
 } // End of setCurrentFrame.
 
 #endif // VIDEO_H

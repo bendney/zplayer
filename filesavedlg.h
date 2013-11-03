@@ -65,59 +65,59 @@ class QVBoxLayout;
 
 class CLFileSaveDlg : public QFileDialog
 {
-  Q_OBJECT
+	Q_OBJECT
 
-  private:
+	private:
 
-  QGroupBox *gbxSave;
-  QCheckBox *ckbAddHeader;
+		QGroupBox *gbxSave;
+		QCheckBox *ckbAddHeader;
 
-  QFrame    *linA;
+		QFrame    *linA;
 
-  QCheckBox *ckbSelFrames;
+		QCheckBox *ckbSelFrames;
 
-  QGroupBox *gbxSelFrames;
-  QLabel    *lblFrameFrom;
-  QLineEdit *ledFrameFrom;
+		QGroupBox *gbxSelFrames;
+		QLabel    *lblFrameFrom;
+		QLineEdit *ledFrameFrom;
 
-  QLabel    *lblFrameTo;
-  QLineEdit *ledFrameTo;
+		QLabel    *lblFrameTo;
+		QLineEdit *ledFrameTo;
 
-  QLabel    *lblFrameStep;
-  QLineEdit *ledFrameStep;
+		QLabel    *lblFrameStep;
+		QLineEdit *ledFrameStep;
 
-  QVBoxLayout *vblGbxSelFrames;
-  QVBoxLayout *vblGbxSave;
-
-
-  private:
-
-  QGroupBox * saveInfo( QWidget *wgtParent );
+		QVBoxLayout *vblGbxSelFrames;
+		QVBoxLayout *vblGbxSave;
 
 
-  protected slots:
+	private:
 
-  virtual void languageChange( void );
+		QGroupBox * saveInfo( QWidget *wgtParent );
 
 
-  public:
+	protected slots:
 
-  bool addHeader( void ) const;
-  bool selectedFrames( void ) const;
+			virtual void languageChange( void );
 
-  int frameFrom( void ) const;
-  int frameTo  ( void ) const;
-  int frameStep( void ) const;
 
-  void init( bool bAddHeader = false, bool bSelFrames = false,
-             int iFrameFrom = 1, int iFrameTo = 0, int iFrameStep = 1 );
+	public:
 
-  // Constructor(s) and destructor.
+		bool addHeader( void ) const;
+		bool selectedFrames( void ) const;
 
-  CLFileSaveDlg( QWidget *wgtParent = NULL,
-                 const char *szName = NULL, bool bModal = false );
+		int frameFrom( void ) const;
+		int frameTo  ( void ) const;
+		int frameStep( void ) const;
 
-  virtual ~CLFileSaveDlg( void );
+		void init( bool bAddHeader = false, bool bSelFrames = false,
+				int iFrameFrom = 1, int iFrameTo = 0, int iFrameStep = 1 );
+
+		// Constructor(s) and destructor.
+
+		CLFileSaveDlg( QWidget *wgtParent = NULL,
+				const char *szName = NULL, bool bModal = false );
+
+		virtual ~CLFileSaveDlg( void );
 }; // End of class CLFileSaveDlg.
 
 #endif // FILESAVEDLG_H

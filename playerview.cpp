@@ -48,44 +48,44 @@
 
 void CLPlayerView::keyPressEvent( QKeyEvent *evKey )
 {
-  switch( evKey->key( ) )
-  {
-    case Key_Up:
-      scrollBy(   0, -10 );
-    break;
+	switch( evKey->key( ) )
+	{
+		case Key_Up:
+			scrollBy(   0, -10 );
+			break;
 
-    case Key_Down:
-      scrollBy(   0,  10 );
-    break;
+		case Key_Down:
+			scrollBy(   0,  10 );
+			break;
 
-    case Key_Left:
-      scrollBy( -10,   0 );
-    break;
+		case Key_Left:
+			scrollBy( -10,   0 );
+			break;
 
-    case Key_Right:
-      scrollBy(  10,   0 );
-    break;
+		case Key_Right:
+			scrollBy(  10,   0 );
+			break;
 
-    case Key_PageUp:
-      scrollBy(  0, -QMAX( 10, viewport( )->height( ) ) );
-    break;
+		case Key_PageUp:
+			scrollBy(  0, -QMAX( 10, viewport( )->height( ) ) );
+			break;
 
-    case Key_PageDown:
-      scrollBy(  0,  QMAX( 10, viewport( )->height( ) ) );
-    break;
+		case Key_PageDown:
+			scrollBy(  0,  QMAX( 10, viewport( )->height( ) ) );
+			break;
 
-    case Key_Home:
-      scrollBy( -QMAX( 10, viewport( )->width( ) ), 0 );
-    break;
+		case Key_Home:
+			scrollBy( -QMAX( 10, viewport( )->width( ) ), 0 );
+			break;
 
-    case Key_End:
-      scrollBy(  QMAX( 10, viewport( )->width( ) ), 0 );
-    break;
+		case Key_End:
+			scrollBy(  QMAX( 10, viewport( )->width( ) ), 0 );
+			break;
 
-    default:
-      evKey->ignore( );
-    break;
-  }
+		default:
+			evKey->ignore( );
+			break;
+	}
 } // End of keyPressEvent.
 
 
@@ -95,7 +95,7 @@ void CLPlayerView::keyPressEvent( QKeyEvent *evKey )
 
 void CLPlayerView::centerVideo( void )
 {
-  center( video( )->width( )/2, video( )->height( )/2 );
+	center( video( )->width( )/2, video( )->height( )/2 );
 } // End of centerVideo.
 
 
@@ -106,11 +106,11 @@ void CLPlayerView::centerVideo( void )
 CLPlayerView::CLPlayerView( QWidget *wgParent, const char *szName, WFlags wf )
              :QScrollView( wgParent, szName, wf )
 {
-  vidPriv = new CLVideo( viewport( ), "VID Widget", WNoAutoErase );
-  connect( vidPriv, SIGNAL( message( const QString & ) ),
-           this   , SIGNAL( message( const QString & ) ) );
+	vidPriv = new CLVideo( viewport( ), "VID Widget", WNoAutoErase );
+	connect( vidPriv, SIGNAL( message( const QString & ) ),
+			this   , SIGNAL( message( const QString & ) ) );
 
-  addChild( vidPriv );
+	addChild( vidPriv );
 } // End of CLPlayerView (Constructor).
 
 
@@ -120,6 +120,6 @@ CLPlayerView::CLPlayerView( QWidget *wgParent, const char *szName, WFlags wf )
 
 CLPlayerView::~CLPlayerView( void )
 {
-  ; // No action.
+	; // No action.
 } // End of ~CLPlayerView (Destructor).
 

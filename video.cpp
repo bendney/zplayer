@@ -59,11 +59,9 @@
 //******************************************************************************
 
 // Std headers.
-
 #include <string.h>
 
 // Qt headers.
-
 #include <qcolor.h>
 #include <qevent.h>
 #include <qmainwindow.h>
@@ -79,163 +77,163 @@
 
 void CLVideo::loadFrame( int iFrame )
 {
-  uchar *uchSigY;
-  uchar *uchSigU;
-  uchar *uchSigV;
+	uchar *uchSigY;
+	uchar *uchSigU;
+	uchar *uchSigV;
 
-  uchar *uchRGB;
+	uchar *uchRGB;
 
-  int x, y;
+	int x, y;
 
-  int iY, iU, iV;
-  int iR, iG, iB;
+	int iY, iU, iV;
+	int iR, iG, iB;
 
-  int iOffU, iOffV;
+	int iOffU, iOffV;
 
 
-  flIn.at( ( iFrame - 1 )*iBufferSize );
-  flIn.readBlock( ( char * )uchBuffer, iBufferSize );
+	flIn.at( ( iFrame - 1 )*iBufferSize );
+	flIn.readBlock( ( char * )uchBuffer, iBufferSize );
 
-  // Set the rgb-pointer to the QImage to be shown.
-  uchRGB = imgFrame.bits( );
+	// Set the rgb-pointer to the QImage to be shown.
+	uchRGB = imgFrame.bits( );
 
-  uchSigY = uchBuffer;
+	uchSigY = uchBuffer;
 
-  switch ( iColorSpace )
-  {
-    case YUV400:
-      for ( y = 0; y < iVideoSizeY; ++y )
-      for ( x = 0; x < iVideoSizeX; ++x )
-      {
-        iY = *uchSigY++;
+	switch ( iColorSpace )
+	{
+		case YUV400:
+			for ( y = 0; y < iVideoSizeY; ++y )
+				for ( x = 0; x < iVideoSizeX; ++x )
+				{
+					iY = *uchSigY++;
 
-        *uchRGB++ = iY;
-        *uchRGB++ = iY;
-        *uchRGB++ = iY;
-        *uchRGB++ = 255; // aplha
-      }
-    break;
+					*uchRGB++ = iY;
+					*uchRGB++ = iY;
+					*uchRGB++ = iY;
+					*uchRGB++ = 255; // aplha
+				}
+			break;
 
-    case YUV420:
-      iOffU = iVideoSizeX*iVideoSizeY;
-      iOffV = iOffU + iOffU/4;
+		case YUV420:
+			iOffU = iVideoSizeX*iVideoSizeY;
+			iOffV = iOffU + iOffU/4;
 
-      uchSigU = uchBuffer + iOffU;
-      uchSigV = uchBuffer + iOffV;
+			uchSigU = uchBuffer + iOffU;
+			uchSigV = uchBuffer + iOffV;
 
-      for ( y = 0; y < iVideoSizeY; y += 2 )
-      {
-        for ( x = 0; x < iVideoSizeX; x += 2 )
-        {
-          iY = uchSigY[0];
-          iU = *uchSigU++ - 128;
-          iV = *uchSigV++ - 128;
+			for ( y = 0; y < iVideoSizeY; y += 2 )
+			{
+				for ( x = 0; x < iVideoSizeX; x += 2 )
+				{
+					iY = uchSigY[0];
+					iU = *uchSigU++ - 128;
+					iV = *uchSigV++ - 128;
 
-          yuvToRGB( iY, iU, iV, iR, iG, iB );
+					yuvToRGB( iY, iU, iV, iR, iG, iB );
 
-          *uchRGB++ = iB;
-          *uchRGB++ = iG;
-          *uchRGB++ = iR;
-          *uchRGB++ = 255; // aplha
+					*uchRGB++ = iB;
+					*uchRGB++ = iG;
+					*uchRGB++ = iR;
+					*uchRGB++ = 255; // aplha
 
-          iY = uchSigY[1];
+					iY = uchSigY[1];
 
-          yuvToRGB( iY, iU, iV, iR, iG, iB );
+					yuvToRGB( iY, iU, iV, iR, iG, iB );
 
-          *uchRGB++ = iB;
-          *uchRGB++ = iG;
-          *uchRGB++ = iR;
-          *uchRGB++ = 255; // aplha
+					*uchRGB++ = iB;
+					*uchRGB++ = iG;
+					*uchRGB++ = iR;
+					*uchRGB++ = 255; // aplha
 
-          uchRGB += 4*( iVideoSizeX - 2 );
+					uchRGB += 4*( iVideoSizeX - 2 );
 
-          iY = uchSigY[iVideoSizeX];
+					iY = uchSigY[iVideoSizeX];
 
-          yuvToRGB( iY, iU, iV, iR, iG, iB );
+					yuvToRGB( iY, iU, iV, iR, iG, iB );
 
-          *uchRGB++ = iB;
-          *uchRGB++ = iG;
-          *uchRGB++ = iR;
-          *uchRGB++ = 255; // aplha
+					*uchRGB++ = iB;
+					*uchRGB++ = iG;
+					*uchRGB++ = iR;
+					*uchRGB++ = 255; // aplha
 
-          iY = uchSigY[iVideoSizeX + 1];
+					iY = uchSigY[iVideoSizeX + 1];
 
-          yuvToRGB( iY, iU, iV, iR, iG, iB );
+					yuvToRGB( iY, iU, iV, iR, iG, iB );
 
-          *uchRGB++ = iB;
-          *uchRGB++ = iG;
-          *uchRGB++ = iR;
-          *uchRGB++ = 255; // aplha
+					*uchRGB++ = iB;
+					*uchRGB++ = iG;
+					*uchRGB++ = iR;
+					*uchRGB++ = 255; // aplha
 
-          uchRGB -= 4*iVideoSizeX;
-          uchSigY += 2;
-        }
+					uchRGB -= 4*iVideoSizeX;
+					uchSigY += 2;
+				}
 
-        uchSigY += iVideoSizeX;
-        uchRGB += 4*iVideoSizeX;
-      }
-    break;
+				uchSigY += iVideoSizeX;
+				uchRGB += 4*iVideoSizeX;
+			}
+			break;
 
-    case YUV422:
-      iOffU = iVideoSizeX*iVideoSizeY;
-      iOffV = iOffU + iOffU/2;
+		case YUV422:
+			iOffU = iVideoSizeX*iVideoSizeY;
+			iOffV = iOffU + iOffU/2;
 
-      uchSigU = uchBuffer + iOffU;
-      uchSigV = uchBuffer + iOffV;
+			uchSigU = uchBuffer + iOffU;
+			uchSigV = uchBuffer + iOffV;
 
-      for ( y = 0; y < iVideoSizeY; ++y )
-      for ( x = 0; x < iVideoSizeX; x += 2 )
-      {
-        iY = *uchSigY++;
-        iU = *uchSigU++ - 128;
-        iV = *uchSigV++ - 128;
+			for ( y = 0; y < iVideoSizeY; ++y )
+				for ( x = 0; x < iVideoSizeX; x += 2 )
+				{
+					iY = *uchSigY++;
+					iU = *uchSigU++ - 128;
+					iV = *uchSigV++ - 128;
 
-        yuvToRGB( iY, iU, iV, iR, iG, iB );
+					yuvToRGB( iY, iU, iV, iR, iG, iB );
 
-        *uchRGB++ = iB;
-        *uchRGB++ = iG;
-        *uchRGB++ = iR;
-        *uchRGB++ = 255; // aplha
+					*uchRGB++ = iB;
+					*uchRGB++ = iG;
+					*uchRGB++ = iR;
+					*uchRGB++ = 255; // aplha
 
-        iY = *uchSigY++;
+					iY = *uchSigY++;
 
-        yuvToRGB( iY, iU, iV, iR, iG, iB );
+					yuvToRGB( iY, iU, iV, iR, iG, iB );
 
-        *uchRGB++ = iB;
-        *uchRGB++ = iG;
-        *uchRGB++ = iR;
-        *uchRGB++ = 255; // aplha
-      }
-    break;
+					*uchRGB++ = iB;
+					*uchRGB++ = iG;
+					*uchRGB++ = iR;
+					*uchRGB++ = 255; // aplha
+				}
+			break;
 
-    case YUV444:
-      iOffU = iVideoSizeX*iVideoSizeY;
-      iOffV = 2*iOffU;
+		case YUV444:
+			iOffU = iVideoSizeX*iVideoSizeY;
+			iOffV = 2*iOffU;
 
-      uchSigU = uchBuffer + iOffU;
-      uchSigV = uchBuffer + iOffV;
+			uchSigU = uchBuffer + iOffU;
+			uchSigV = uchBuffer + iOffV;
 
-      for ( y = 0; y < iVideoSizeY; ++y )
-      for ( x = 0; x < iVideoSizeX; ++x )
-      {
-        iY = *uchSigY++;
-        iU = *uchSigU++ - 128;
-        iV = *uchSigV++ - 128;
+			for ( y = 0; y < iVideoSizeY; ++y )
+				for ( x = 0; x < iVideoSizeX; ++x )
+				{
+					iY = *uchSigY++;
+					iU = *uchSigU++ - 128;
+					iV = *uchSigV++ - 128;
 
-        yuvToRGB( iY, iU, iV, iR, iG, iB );
+					yuvToRGB( iY, iU, iV, iR, iG, iB );
 
-        *uchRGB++ = iB;
-        *uchRGB++ = iG;
-        *uchRGB++ = iR;
-        *uchRGB++ = 255; // aplha
-      }
-    break;
+					*uchRGB++ = iB;
+					*uchRGB++ = iG;
+					*uchRGB++ = iR;
+					*uchRGB++ = 255; // aplha
+				}
+			break;
 
-    default:
-    return;
-  }
+		default:
+			return;
+	}
 
-  pxmFrame[bAllFramesInMemory ? ( iFrame - 1 ) : 0] = imgFrame;
+	pxmFrame[bAllFramesInMemory ? ( iFrame - 1 ) : 0] = imgFrame;
 } // End of loadFrame.
 
 
@@ -245,8 +243,8 @@ void CLVideo::loadFrame( int iFrame )
 
 void CLVideo::loadAllFrames( void )
 {
-  for ( int iFrame = 1; iFrame <= iNumberOfFrames; ++iFrame )
-    loadFrame( iFrame );
+	for ( int iFrame = 1; iFrame <= iNumberOfFrames; ++iFrame )
+		loadFrame( iFrame );
 } // End of loadAllFrames.
 
 
@@ -256,8 +254,8 @@ void CLVideo::loadAllFrames( void )
 
 void CLVideo::paintEvent( QPaintEvent *evPaint )
 {
-  ( void )evPaint; // Parameter not used.
-  bitBlt( this, 0, 0, &pxmFrame[bAllFramesInMemory ? ( iCurrFrame - 1 ) : 0] );
+	( void )evPaint; // Parameter not used.
+	bitBlt( this, 0, 0, &pxmFrame[bAllFramesInMemory ? ( iCurrFrame - 1 ) : 0] );
 }
 
 
@@ -267,28 +265,28 @@ void CLVideo::paintEvent( QPaintEvent *evPaint )
 
 void CLVideo::mouseMoveEvent( QMouseEvent *evMouse )
 {
-  int iX = evMouse->pos( ).x( ),
-      iY = evMouse->pos( ).y( );
+	int iX = evMouse->pos( ).x( ),
+		iY = evMouse->pos( ).y( );
 
 
-  if ( iX < 0 || iX > iVideoSizeX - 1 || iY < 0 || iY > iVideoSizeY - 1  )
-    return;
+	if ( iX < 0 || iX > iVideoSizeX - 1 || iY < 0 || iY > iVideoSizeY - 1  )
+		return;
 
-  if ( bAllFramesInMemory )
-  {
-    emit message( tr( "Pixel: (%1, %2)" ).arg( iX ).arg( iY ) );
-    return;
-  }
+	if ( bAllFramesInMemory )
+	{
+		emit message( tr( "Pixel: (%1, %2)" ).arg( iX ).arg( iY ) );
+		return;
+	}
 
-  QRgb rgbPixel = imgFrame.pixel( iX, iY );
+	QRgb rgbPixel = imgFrame.pixel( iX, iY );
 
-  emit message( tr(
-    "Pixel: (%1, %2)  RGB: (%3, %4, %5)"
-  ).arg( iX )
-   .arg( iY )
-   .arg( qRed  ( rgbPixel ) )
-   .arg( qGreen( rgbPixel ) )
-   .arg( qBlue ( rgbPixel ) ) );
+	emit message( tr(
+				"Pixel: (%1, %2)  RGB: (%3, %4, %5)"
+				).arg( iX )
+			.arg( iY )
+			.arg( qRed  ( rgbPixel ) )
+			.arg( qGreen( rgbPixel ) )
+			.arg( qBlue ( rgbPixel ) ) );
 } // End of mouseMoveEvent.
 
 
@@ -298,9 +296,9 @@ void CLVideo::mouseMoveEvent( QMouseEvent *evMouse )
 
 void CLVideo::leaveEvent( QEvent *evLeave )
 {
-  ( void )evLeave; // Not used.
+	( void )evLeave; // Not used.
 
-  emit message( "" );
+	emit message( "" );
 } // End of leaveEvent.
 
 
@@ -309,94 +307,94 @@ void CLVideo::leaveEvent( QEvent *evLeave )
 //******************************************************************************
 
 bool CLVideo::load( const QString &strName,
-                    int iVidSizeX, int iVidSizeY, int iColSpace,
-                    bool bAllFramesInMem )
+		int iVidSizeX, int iVidSizeY, int iColSpace,
+		bool bAllFramesInMem )
 {
-  int iLength;
+	int iLength;
 
 
-  bAllFramesInMemory = bAllFramesInMem;
+	bAllFramesInMemory = bAllFramesInMem;
 
-  iVideoSizeX = iVidSizeX;
-  iVideoSizeY = iVidSizeY;
-  iColorSpace = iColSpace;
+	iVideoSizeX = iVidSizeX;
+	iVideoSizeY = iVidSizeY;
+	iColorSpace = iColSpace;
 
-  if ( false == strName.isEmpty( ) )
-  {
-    if ( flIn.isOpen( ) )
-      flIn.close( );
+	if ( false == strName.isEmpty( ) )
+	{
+		if ( flIn.isOpen( ) )
+			flIn.close( );
 
-    flIn.setName( strName );
-    flIn.open( IO_ReadOnly );
-  }
+		flIn.setName( strName );
+		flIn.open( IO_ReadOnly );
+	}
 
-  iLength = int( flIn.size( ) );
+	iLength = int( flIn.size( ) );
 
-  switch ( iColorSpace )
-  {
-    case YUV400:
-      iBufferSize = iVideoSizeX*iVideoSizeY;
-      iNumberOfFrames = iLength/iBufferSize;
-    break;
+	switch ( iColorSpace )
+	{
+		case YUV400:
+			iBufferSize = iVideoSizeX*iVideoSizeY;
+			iNumberOfFrames = iLength/iBufferSize;
+			break;
 
-    case YUV420:
-      iBufferSize = iVideoSizeX*iVideoSizeY*3/2;
-      iNumberOfFrames = iLength/iBufferSize;
-    break;
+		case YUV420:
+			iBufferSize = iVideoSizeX*iVideoSizeY*3/2;
+			iNumberOfFrames = iLength/iBufferSize;
+			break;
 
-    case YUV422:
-      iBufferSize = 2*iVideoSizeX*iVideoSizeY;
-      iNumberOfFrames = iLength/iBufferSize;
-    break;
+		case YUV422:
+			iBufferSize = 2*iVideoSizeX*iVideoSizeY;
+			iNumberOfFrames = iLength/iBufferSize;
+			break;
 
-    case YUV444:
-      iBufferSize = 3*iVideoSizeX*iVideoSizeY;
-      iNumberOfFrames = iLength/iBufferSize;
-    break;
+		case YUV444:
+			iBufferSize = 3*iVideoSizeX*iVideoSizeY;
+			iNumberOfFrames = iLength/iBufferSize;
+			break;
 
-    default:
-      iBufferSize = 0;
-      iNumberOfFrames = 0;
-    return false;
-  }
+		default:
+			iBufferSize = 0;
+			iNumberOfFrames = 0;
+			return false;
+	}
 
-  if ( iNumberOfFrames < 1 )
-    return false;
+	if ( iNumberOfFrames < 1 )
+		return false;
 
-  if ( uchBuffer )
-    delete[] uchBuffer;
+	if ( uchBuffer )
+		delete[] uchBuffer;
 
-  uchBuffer = new uchar[iBufferSize];
+	uchBuffer = new uchar[iBufferSize];
 
-  if ( NULL != pxmFrame )
-  {
-    delete[] pxmFrame;
-    pxmFrame = NULL;
-  }
+	if ( NULL != pxmFrame )
+	{
+		delete[] pxmFrame;
+		pxmFrame = NULL;
+	}
 
-  imgFrame.create( iVideoSizeX, iVideoSizeY, 32 );
+	imgFrame.create( iVideoSizeX, iVideoSizeY, 32 );
 
-  if ( bAllFramesInMemory )
-  {
-    pxmFrame = new QPixmap[iNumberOfFrames];
+	if ( bAllFramesInMemory )
+	{
+		pxmFrame = new QPixmap[iNumberOfFrames];
 
-    if ( NULL == pxmFrame )
-    {
-      bAllFramesInMemory = false;
+		if ( NULL == pxmFrame )
+		{
+			bAllFramesInMemory = false;
 
-      pxmFrame = new QPixmap[1];
-    }
-    else
-      loadAllFrames( );
-  }
-  else
-    pxmFrame = new QPixmap[1];
+			pxmFrame = new QPixmap[1];
+		}
+		else
+			loadAllFrames( );
+	}
+	else
+		pxmFrame = new QPixmap[1];
 
-  resize( iVideoSizeX, iVideoSizeY );
+	resize( iVideoSizeX, iVideoSizeY );
 
-  showFirstFrame( );
+	showFirstFrame( );
 
-  return true;
+	return true;
 } // End of load.
 
 
@@ -405,72 +403,72 @@ bool CLVideo::load( const QString &strName,
 //******************************************************************************
 
 bool CLVideo::save( const QString &strName,
-                    bool bAddHeader, bool bSelFrames,
-                    int iFrameFrom, int iFrameTo, int iFrameStep )
+		bool bAddHeader, bool bSelFrames,
+		int iFrameFrom, int iFrameTo, int iFrameStep )
 {
-  QFile flOut( strName );
+	QFile flOut( strName );
 
 
-  if ( false == flIn.isOpen( ) )
-    return false;
+	if ( false == flIn.isOpen( ) )
+		return false;
 
-  if ( false == flOut.open( IO_WriteOnly ) )
-    return false;
+	if ( false == flOut.open( IO_WriteOnly ) )
+		return false;
 
-  if ( true == bAddHeader )
-  {
-    // Add a header.
-  }
+	if ( true == bAddHeader )
+	{
+		// Add a header.
+	}
 
-  if ( true == bSelFrames )
-  {
-    if ( 0 == iFrameFrom )
-      iFrameFrom = iNumberOfFrames;
+	if ( true == bSelFrames )
+	{
+		if ( 0 == iFrameFrom )
+			iFrameFrom = iNumberOfFrames;
 
-    if ( 0 == iFrameTo )
-      iFrameTo = iNumberOfFrames;
+		if ( 0 == iFrameTo )
+			iFrameTo = iNumberOfFrames;
 
-    if ( iFrameFrom > iNumberOfFrames )
-      iFrameFrom = iNumberOfFrames;
+		if ( iFrameFrom > iNumberOfFrames )
+			iFrameFrom = iNumberOfFrames;
 
-    if ( iFrameTo > iNumberOfFrames )
-      iFrameTo = iNumberOfFrames;
+		if ( iFrameTo > iNumberOfFrames )
+			iFrameTo = iNumberOfFrames;
 
-    if ( iFrameFrom > iFrameTo )
-    {
-      for ( int iFrame = iFrameTo; iFrame >= iFrameFrom; iFrame -= iFrameStep )
-      {
-        flIn.at( ( iFrame - 1 )*iBufferSize );
-        flIn.readBlock( ( char * )uchBuffer, iBufferSize );
+		if ( iFrameFrom > iFrameTo )
+		{
+			for ( int iFrame = iFrameTo; iFrame >= iFrameFrom; iFrame -= iFrameStep )
+			{
+				flIn.at( ( iFrame - 1 )*iBufferSize );
+				flIn.readBlock( ( char * )uchBuffer, iBufferSize );
 
-        flOut.writeBlock( ( char * )uchBuffer, iBufferSize );
-      }
-    }
-    else
-    {
-      for ( int iFrame = iFrameFrom; iFrame <= iFrameTo; iFrame += iFrameStep )
-      {
-        flIn.at( ( iFrame - 1 )*iBufferSize );
-        flIn.readBlock( ( char * )uchBuffer, iBufferSize );
+				flOut.writeBlock( ( char * )uchBuffer, iBufferSize );
+			}
+		}
+		else
+		{
+			for ( int iFrame = iFrameFrom; iFrame <= iFrameTo; iFrame += iFrameStep )
+			{
+				flIn.at( ( iFrame - 1 )*iBufferSize );
+				flIn.readBlock( ( char * )uchBuffer, iBufferSize );
 
-        flOut.writeBlock( ( char * )uchBuffer, iBufferSize );
-      }
-    }
-  }
-  else
-  {
-    for ( int iFrame = 1; iFrame <= iNumberOfFrames; ++iFrame )
-    {
-      flIn.at( ( iFrame - 1 )*iBufferSize );
-      flIn.readBlock( ( char * )uchBuffer, iBufferSize );
+				flOut.writeBlock( ( char * )uchBuffer, iBufferSize );
+			}
+		}
+	}
+	else
+	{
+		for ( int iFrame = 1; iFrame <= iNumberOfFrames; ++iFrame )
+		{
+			flIn.at( ( iFrame - 1 )*iBufferSize );
+			flIn.readBlock( ( char * )uchBuffer, iBufferSize );
 
-      flOut.writeBlock( ( char * )uchBuffer, iBufferSize );
-    }
-  }
+			flOut.writeBlock( ( char * )uchBuffer, iBufferSize );
+		}
+	}
 
-  flOut.close( );
+	flOut.close( );
 
-  return true;
+	return true;
 } // End of save.
 
 
@@ -480,7 +478,7 @@ bool CLVideo::save( const QString &strName,
 
 uchar * CLVideo::buffer( void ) const
 {
-  return uchBuffer;
+	return uchBuffer;
 } // End of buffer.
 
 
@@ -490,7 +488,7 @@ uchar * CLVideo::buffer( void ) const
 
 const QPixmap & CLVideo::frame( void ) const
 {
-  return pxmFrame[bAllFramesInMemory ? ( iCurrFrame - 1 ) : 0];
+	return pxmFrame[bAllFramesInMemory ? ( iCurrFrame - 1 ) : 0];
 } // End of frame.
 
 
@@ -500,7 +498,7 @@ const QPixmap & CLVideo::frame( void ) const
 
 int CLVideo::numberOfFrames( void ) const
 {
-  return iNumberOfFrames;
+	return iNumberOfFrames;
 } // End of numberOfFrames.
 
 
@@ -508,75 +506,75 @@ int CLVideo::numberOfFrames( void ) const
 // PROCEDURE CLVideo (Constructor)
 //******************************************************************************
 
-CLVideo::CLVideo( QWidget *wgtParent, const char *szName, WFlags wf )
-        :QWidget( wgtParent, szName, wf )
+	CLVideo::CLVideo( QWidget *wgtParent, const char *szName, WFlags wf )
+:QWidget( wgtParent, szName, wf )
 {
-  bAllFramesInMemory = false;
+	bAllFramesInMemory = false;
 
-  uchBuffer = NULL;
+	uchBuffer = NULL;
 
-  iBufferSize = 0;
+	iBufferSize = 0;
 
-  iCurrFrame = 0;
-  iNumberOfFrames = 0;
+	iCurrFrame = 0;
+	iNumberOfFrames = 0;
 
-  iVideoSizeX = 352;
-  iVideoSizeY = 288;
+	iVideoSizeX = 352;
+	iVideoSizeY = 288;
 
-  iColorSpace = YUV420;
+	iColorSpace = YUV420;
 
-  imgFrame.create( iVideoSizeX, iVideoSizeY, 32 );
+	imgFrame.create( iVideoSizeX, iVideoSizeY, 32 );
 
-  QRgb rgbPixel = 0;
+	QRgb rgbPixel = 0;
 
-  QRgb **rgbFrame = ( QRgb ** )imgFrame.jumpTable( );
+	QRgb **rgbFrame = ( QRgb ** )imgFrame.jumpTable( );
 
-  for ( int iY = 0; iY < iVideoSizeY; ++iY )
-  for ( int iX = 0; iX < iVideoSizeX; ++iX )
-  {
-    if ( iX < iVideoSizeX/8 )
-      rgbPixel = ( iY < 3*iVideoSizeY/4 )
-               ? qRgb( 255, 255, 255 )
-               : qRgb( 255, 255, 255 ); // White.
-    else if ( iX < iVideoSizeX/4 )
-      rgbPixel = ( iY < 3*iVideoSizeY/4 )
-               ? qRgb( 255, 255,   0 )
-               : qRgb( 226, 226, 226 ); // Yellow.
-    else if ( iX < 3*iVideoSizeX/8 )
-      rgbPixel = ( iY < 3*iVideoSizeY/4 )
-               ? qRgb(   0, 255, 255 )
-               : qRgb( 179, 179, 179 ); // Cyan.
-    else if ( iX < iVideoSizeX/2 )
-      rgbPixel = ( iY < 3*iVideoSizeY/4 )
-               ? qRgb(   0, 255,   0 )
-               : qRgb( 150, 150, 150 ); // Green.
-    else if ( iX < 5*iVideoSizeX/8 )
-      rgbPixel = ( iY < 3*iVideoSizeY/4 )
-               ? qRgb( 255,   0, 255 )
-               : qRgb( 105, 105, 105 ); // Magenta.
-    else if ( iX < 3*iVideoSizeX/4 )
-      rgbPixel = ( iY < 3*iVideoSizeY/4 )
-               ? qRgb( 255,   0,   0 )
-               : qRgb(  76,  76,  76 ); // Red.
-    else if ( iX < 7*iVideoSizeX/8 )
-      rgbPixel = ( iY < 3*iVideoSizeY/4 )
-               ? qRgb(   0,   0, 255 )
-               : qRgb(  29,  29,  29 ); // Blue.
-    else
-      rgbPixel = ( iY < 3*iVideoSizeY/4 )
-               ? qRgb(   0,   0,   0 )
-               : qRgb(   0,   0,   0 ); // Black.
+	for ( int iY = 0; iY < iVideoSizeY; ++iY )
+		for ( int iX = 0; iX < iVideoSizeX; ++iX )
+		{
+			if ( iX < iVideoSizeX/8 )
+				rgbPixel = ( iY < 3*iVideoSizeY/4 )
+					? qRgb( 255, 255, 255 )
+					: qRgb( 255, 255, 255 ); // White.
+			else if ( iX < iVideoSizeX/4 )
+				rgbPixel = ( iY < 3*iVideoSizeY/4 )
+					? qRgb( 255, 255,   0 )
+					: qRgb( 226, 226, 226 ); // Yellow.
+			else if ( iX < 3*iVideoSizeX/8 )
+				rgbPixel = ( iY < 3*iVideoSizeY/4 )
+					? qRgb(   0, 255, 255 )
+					: qRgb( 179, 179, 179 ); // Cyan.
+			else if ( iX < iVideoSizeX/2 )
+				rgbPixel = ( iY < 3*iVideoSizeY/4 )
+					? qRgb(   0, 255,   0 )
+					: qRgb( 150, 150, 150 ); // Green.
+			else if ( iX < 5*iVideoSizeX/8 )
+				rgbPixel = ( iY < 3*iVideoSizeY/4 )
+					? qRgb( 255,   0, 255 )
+					: qRgb( 105, 105, 105 ); // Magenta.
+			else if ( iX < 3*iVideoSizeX/4 )
+				rgbPixel = ( iY < 3*iVideoSizeY/4 )
+					? qRgb( 255,   0,   0 )
+					: qRgb(  76,  76,  76 ); // Red.
+			else if ( iX < 7*iVideoSizeX/8 )
+				rgbPixel = ( iY < 3*iVideoSizeY/4 )
+					? qRgb(   0,   0, 255 )
+					: qRgb(  29,  29,  29 ); // Blue.
+			else
+				rgbPixel = ( iY < 3*iVideoSizeY/4 )
+					? qRgb(   0,   0,   0 )
+					: qRgb(   0,   0,   0 ); // Black.
 
-    rgbFrame[iY][iX] = rgbPixel;
-  }
+			rgbFrame[iY][iX] = rgbPixel;
+		}
 
-  pxmFrame = new QPixmap[1];
-  pxmFrame[0] = imgFrame;
+	pxmFrame = new QPixmap[1];
+	pxmFrame[0] = imgFrame;
 
-  setBackgroundMode( NoBackground );
-  resize( iVideoSizeX, iVideoSizeY );
+	setBackgroundMode( NoBackground );
+	resize( iVideoSizeX, iVideoSizeY );
 
-  setMouseTracking( true );
+	setMouseTracking( true );
 } // End of CLVideo (Constructor).
 
 
@@ -586,13 +584,13 @@ CLVideo::CLVideo( QWidget *wgtParent, const char *szName, WFlags wf )
 
 CLVideo::~CLVideo( void )
 {
-  if ( flIn.isOpen( ) )
-    flIn.close( );
+	if ( flIn.isOpen( ) )
+		flIn.close( );
 
-  if ( NULL != uchBuffer )
-    delete[] uchBuffer;
+	if ( NULL != uchBuffer )
+		delete[] uchBuffer;
 
-  if ( NULL != pxmFrame )
-    delete[] pxmFrame;
+	if ( NULL != pxmFrame )
+		delete[] pxmFrame;
 } // End of ~CLVideo (Destructor).
 

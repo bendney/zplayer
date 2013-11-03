@@ -58,35 +58,35 @@ class CLVideo;
 
 class CLPlayerView: public QScrollView  // cl_plv
 {
-  Q_OBJECT
+	Q_OBJECT
 
-  private:
+	private:
 
-  CLVideo *vidPriv;
-
-
-  protected:
-
-  void keyPressEvent( QKeyEvent *evKey );
+		CLVideo *vidPriv;
 
 
-  public:
+	protected:
 
-  CLVideo * video( void ) const { return vidPriv; };
-
-  void centerVideo( void );
-
-  // Constructor(s) and destructor.
-
-  CLPlayerView( QWidget *wgParent = NULL,
-                const char *szName = NULL, WFlags wf = 0 );
-
-  virtual ~CLPlayerView( void );
+		void keyPressEvent( QKeyEvent *evKey );
 
 
-  signals:
+	public:
 
-  void message( const QString &strText );
+		CLVideo * video( void ) const { return vidPriv; };
+
+		void centerVideo( void );
+
+		// Constructor(s) and destructor.
+
+		CLPlayerView( QWidget *wgParent = NULL,
+				const char *szName = NULL, WFlags wf = 0 );
+
+		virtual ~CLPlayerView( void );
+
+
+	signals:
+
+		void message( const QString &strText );
 }; // End of class CLPlayerView.
 
 #endif // PLAYERVIEW_H

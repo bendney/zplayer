@@ -91,78 +91,78 @@ class QVBoxLayout;
 
 class CLFileOpenDlg : public QFileDialog
 {
-  Q_OBJECT
+	Q_OBJECT
 
-  private:
+	private:
 
-  QGroupBox *gbxOpen;
+		QGroupBox *gbxOpen;
 
-  QCheckBox *ckbAllFramesInMem;
+		QCheckBox *ckbAllFramesInMem;
 
-  QFrame    *linA;
+		QFrame    *linA;
 
-  QLabel    *lblVideoSize;
-  QComboBox *cbxVideoSize;
-  QGroupBox *gbxVideoSize;
+		QLabel    *lblVideoSize;
+		QComboBox *cbxVideoSize;
+		QGroupBox *gbxVideoSize;
 
-  QLabel    *lblVideoSizeX;
-  QLabel    *lblVideoSizeY;
-  QSpinBox  *sbxVideoSizeX;
-  QSpinBox  *sbxVideoSizeY;
+		QLabel    *lblVideoSizeX;
+		QLabel    *lblVideoSizeY;
+		QSpinBox  *sbxVideoSizeX;
+		QSpinBox  *sbxVideoSizeY;
 
-  QFrame    *linB;
+		QFrame    *linB;
 
-  QLabel    *lblColorSpace;
-  QComboBox *cbxColorSpace;
+		QLabel    *lblColorSpace;
+		QComboBox *cbxColorSpace;
 
-  QGridLayout *gdlA;
-  QHBoxLayout *hblGbxVideoSize;
-  QVBoxLayout *vblGbxOpen;
+		QGridLayout *gdlA;
+		QHBoxLayout *hblGbxVideoSize;
+		QVBoxLayout *vblGbxOpen;
 
-  QSize szVideo[32];
-
-
-  private:
-
-  QGroupBox * openInfo( QWidget *wgtParent );
+		QSize szVideo[32];
 
 
-  protected:
+	private:
 
-  int videoSizeToItem( int iVideoSizeX, int iVideoSizeY );
-
-
-  protected slots:
-
-  void fileToVideoSize( const QString &strFile );
-
-  void itemToVideoSize( int iItem );
-
-  void changeCustomSizeX( int iSizeX );
-  void changeCustomSizeY( int iSizeY );
-
-  virtual void languageChange( void );
+		QGroupBox * openInfo( QWidget *wgtParent );
 
 
-  public:
+	protected:
 
-  bool allFramesInMemory( void ) const;
+		int videoSizeToItem( int iVideoSizeX, int iVideoSizeY );
 
-  int videoSizeX( void ) const;
-  int videoSizeY( void ) const;
 
-  int colorSpace( void ) const;
+		protected slots:
 
-  void init( bool bAllFramesInMem = false,
-             int iVideoSizeX = 176, int iVideoSizeY = 144,
-             int iColorSpace = 1 );
+			void fileToVideoSize( const QString &strFile );
 
-  // Constructor(s) and destructor.
+		void itemToVideoSize( int iItem );
 
-  CLFileOpenDlg( QWidget *wgtParent = NULL,
-                 const char *szName = NULL, bool bModal = false );
+		void changeCustomSizeX( int iSizeX );
+		void changeCustomSizeY( int iSizeY );
 
-  virtual ~CLFileOpenDlg( void );
+		virtual void languageChange( void );
+
+
+	public:
+
+		bool allFramesInMemory( void ) const;
+
+		int videoSizeX( void ) const;
+		int videoSizeY( void ) const;
+
+		int colorSpace( void ) const;
+
+		void init( bool bAllFramesInMem = false,
+				int iVideoSizeX = 176, int iVideoSizeY = 144,
+				int iColorSpace = 1 );
+
+		// Constructor(s) and destructor.
+
+		CLFileOpenDlg( QWidget *wgtParent = NULL,
+				const char *szName = NULL, bool bModal = false );
+
+		virtual ~CLFileOpenDlg( void );
 }; // End of class CLFileOpenDlg.
 
 #endif // FILEOPENDLG_H

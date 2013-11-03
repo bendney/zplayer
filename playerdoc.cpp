@@ -37,11 +37,9 @@
 //******************************************************************************
 
 // Qt headers.
-
 #include <qfileinfo.h>
 
 // App headers.
-
 #include "playerdoc.h"
 #include "playerview.h"
 
@@ -54,8 +52,8 @@
 
 void CLPlayerDoc::closeEvent( QCloseEvent *evClose )
 {
-  evClose->accept( );
-  return;
+	evClose->accept( );
+	return;
 } // End of closeEvent.
 
 
@@ -64,26 +62,26 @@ void CLPlayerDoc::closeEvent( QCloseEvent *evClose )
 //******************************************************************************
 
 bool CLPlayerDoc::load( const QString &strName,
-                        int iVideoSizeX, int iVideoSizeY, int iColorSpace,
-                        bool bAllFramesInMem )
+		int iVideoSizeX, int iVideoSizeY, int iColorSpace,
+		bool bAllFramesInMem )
 {
-  CLVideo *vid = view( )->video( );
+	CLVideo *vid = view( )->video( );
 
 
-  if ( false == vid->load( strName, iVideoSizeX, iVideoSizeY,
-                           iColorSpace, bAllFramesInMem ) )
-    return false;
+	if ( false == vid->load( strName, iVideoSizeX, iVideoSizeY,
+				iColorSpace, bAllFramesInMem ) )
+		return false;
 
-  setCaption( tr(
-    "Video %1: %2 x %3, %4 frames"
-  ).arg( QFileInfo( strName ).fileName( ) )
-   .arg( iVideoSizeX )
-   .arg( iVideoSizeY )
-   .arg( vid->numberOfFrames( ) ) );
+	setCaption( tr(
+				"Video %1: %2 x %3, %4 frames"
+				).arg( QFileInfo( strName ).fileName( ) )
+			.arg( iVideoSizeX )
+			.arg( iVideoSizeY )
+			.arg( vid->numberOfFrames( ) ) );
 
-  resize( vid->width( ) + 4, vid->height( ) + 6 );
+	resize( vid->width( ) + 4, vid->height( ) + 6 );
 
-  return true;
+	return true;
 } // End of load.
 
 
@@ -92,14 +90,14 @@ bool CLPlayerDoc::load( const QString &strName,
 //******************************************************************************
 
 bool CLPlayerDoc::save( const QString &strName,
-                        bool bAddHeader, bool bSelFrames,
-                        int iFrameFrom, int iFrameTo, int iFrameStep )
+		bool bAddHeader, bool bSelFrames,
+		int iFrameFrom, int iFrameTo, int iFrameStep )
 {
-  CLVideo *vid = view( )->video( );
+	CLVideo *vid = view( )->video( );
 
 
-  return vid->save( strName, bAddHeader, bSelFrames,
-                    iFrameFrom, iFrameTo, iFrameStep );
+	return vid->save( strName, bAddHeader, bSelFrames,
+			iFrameFrom, iFrameTo, iFrameStep );
 } // End of save.
 
 
@@ -110,15 +108,15 @@ bool CLPlayerDoc::save( const QString &strName,
 CLPlayerDoc::CLPlayerDoc( QWidget *wgtParent, const char *szName, WFlags wf )
             :QMainWindow( wgtParent, szName, wf )
 {
-  plvPriv = new CLPlayerView( this, "PLV View" );
+	plvPriv = new CLPlayerView( this, "PLV View" );
 
-  connect( plvPriv, SIGNAL( message( const QString & ) ),
-           this   , SIGNAL( message( const QString & ) ) );
+	connect( plvPriv, SIGNAL( message( const QString & ) ),
+			this   , SIGNAL( message( const QString & ) ) );
 
-  setFocusProxy( plvPriv );
-  setCentralWidget( plvPriv );
+	setFocusProxy( plvPriv );
+	setCentralWidget( plvPriv );
 
-  resize( plvPriv->video( )->width( ) + 4, plvPriv->video( )->height( ) + 4 );
+	resize( plvPriv->video( )->width( ) + 4, plvPriv->video( )->height( ) + 4 );
 } // End of CLPlayerDoc (Constructor).
 
 
@@ -128,6 +126,6 @@ CLPlayerDoc::CLPlayerDoc( QWidget *wgtParent, const char *szName, WFlags wf )
 
 CLPlayerDoc::~CLPlayerDoc( void )
 {
-  ; // No action.
+	; // No action.
 } // End of ~CLPlayerDoc (Destructor).
 

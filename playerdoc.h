@@ -56,40 +56,40 @@ class CLPlayerView;
 
 class CLPlayerDoc: public QMainWindow // cl_pld
 {
-  Q_OBJECT
+	Q_OBJECT
 
-  private:
+	private:
 
-  CLPlayerView *plvPriv;
-
-
-  protected:
-
-  void closeEvent( QCloseEvent *evClose );
+		CLPlayerView *plvPriv;
 
 
-  public:
+	protected:
 
-  CLPlayerView * view( void ) const { return plvPriv; };
-
-  bool load( const QString &strName,
-             int iVideoSizeX, int iVideoSizeY, int iColorSpace,
-             bool bAllFramesInMem = false );
-
-  bool save( const QString &strName,
-             bool bAddHeader, bool bSelFrames,
-             int iFrameFrom, int iFrameTo, int iFrameStep );
-
-  // Constructor(s) and destructor.
-
-  CLPlayerDoc( QWidget *wgParent, const char *szName = NULL, WFlags wf = 0 );
-
-  virtual ~CLPlayerDoc( void );
+		void closeEvent( QCloseEvent *evClose );
 
 
-  signals:
+	public:
 
-  void message( const QString &strText );
+		CLPlayerView * view( void ) const { return plvPriv; };
+
+		bool load( const QString &strName,
+				int iVideoSizeX, int iVideoSizeY, int iColorSpace,
+				bool bAllFramesInMem = false );
+
+		bool save( const QString &strName,
+				bool bAddHeader, bool bSelFrames,
+				int iFrameFrom, int iFrameTo, int iFrameStep );
+
+		// Constructor(s) and destructor.
+
+		CLPlayerDoc( QWidget *wgParent, const char *szName = NULL, WFlags wf = 0 );
+
+		virtual ~CLPlayerDoc( void );
+
+
+	signals:
+
+		void message( const QString &strText );
 }; // End of class CLPlayerDoc.
 
 #endif // PLAYERDOC_H

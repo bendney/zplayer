@@ -37,49 +37,37 @@
 //******************************************************************************
 
 // Qt headers.
-
 #include <qapplication.h>
-
 // App headers.
-
 #include "playerwin.h"
 
-
-//******************************************************************************
-// PROCEDURE main
-//******************************************************************************
-
-int main( int iArgC, char *a_szArgV[] )
+int main(int iArgC, char *a_szArgV[])
 {
-  const char *szName = "ZPlayer Main Widget";
+	const char *szName = "ZPlayer Main Widget";
 
-  int iRet;
+	int iRet;
 
-  QApplication *appPlayer;
-  CLPlayerWin  *winPlayer; // ZPlayer window.
+	QApplication *appPlayer;
+	CLPlayerWin  *winPlayer; // ZPlayer window.
 
+	appPlayer = new QApplication( iArgC, a_szArgV );
 
-  appPlayer = new QApplication( iArgC, a_szArgV );
+	// Create main widget.
+	winPlayer = new CLPlayerWin( NULL, szName );
 
-  // Create main widget.
+	// Show window.
+	appPlayer->setMainWidget( winPlayer );
 
-  winPlayer = new CLPlayerWin( NULL, szName );
+	winPlayer->parseCmdLine( iArgC, a_szArgV );
+	winPlayer->show( );
 
-  // Show window.
+	// Process events.
+	iRet = appPlayer->exec( );
 
-  appPlayer->setMainWidget( winPlayer );
+	// Delete application and exit.
 
-  winPlayer->parseCmdLine( iArgC, a_szArgV );
-  winPlayer->show( );
+	delete appPlayer;
 
-  // Process events.
-
-  iRet = appPlayer->exec( );
-
-  // Delete application and exit.
-
-  delete appPlayer;
-
-  return iRet;
-} // End of main.
+	return iRet;
+}
 

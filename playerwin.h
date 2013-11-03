@@ -78,175 +78,175 @@ class CLPlayerView;
 
 class CLPlayerWin : public QMainWindow // cl_plw
 {
-  Q_OBJECT
+	Q_OBJECT
 
-  private:
+	private:
 
-  bool bIsPlaying;
-  bool bIsLooping;
-  bool bIsLocked;
+		bool bIsPlaying;
+		bool bIsLooping;
+		bool bIsLocked;
 
-  bool bNoName;
+		bool bNoName;
 
-  bool bCheckExistingFile;
+		bool bCheckExistingFile;
 
-  QDir dirOpen,
-       dirSave;
+		QDir dirOpen,
+			 dirSave;
 
-  QString strOpenFile,
-          strSaveFile;
+		QString strOpenFile,
+				strSaveFile;
 
-  // Icons.
-  QPixmap pxmApp16x16;
-  QPixmap pxmApp32x32;
+		// Icons.
+		QPixmap pxmApp16x16;
+		QPixmap pxmApp32x32;
 
-  QPixmap pxmFileNew;
-  QPixmap pxmFileOpen;
-  QPixmap pxmFileSave;
-  QPixmap pxmFileClose;
-  QPixmap pxmFileExit;
+		QPixmap pxmFileNew;
+		QPixmap pxmFileOpen;
+		QPixmap pxmFileSave;
+		QPixmap pxmFileClose;
+		QPixmap pxmFileExit;
 
-  QPixmap pxmBackward;
-  QPixmap pxmPlay;
-  QPixmap pxmPause;
-  QPixmap pxmForward;
-  QPixmap pxmStop;
-  QPixmap pxmLoop;
-  QPixmap pxmLock;
-  QPixmap pxmUnlock;
-  QPixmap pxmCenter;
+		QPixmap pxmBackward;
+		QPixmap pxmPlay;
+		QPixmap pxmPause;
+		QPixmap pxmForward;
+		QPixmap pxmStop;
+		QPixmap pxmLoop;
+		QPixmap pxmLock;
+		QPixmap pxmUnlock;
+		QPixmap pxmCenter;
 
-  QPixmap pxmCascade;
-  QPixmap pxmTileVer;
-  QPixmap pxmTileHor;
+		QPixmap pxmCascade;
+		QPixmap pxmTileVer;
+		QPixmap pxmTileHor;
 
-  QPixmap pxmContents;
-  QPixmap pxmQtLogo;
+		QPixmap pxmContents;
+		QPixmap pxmQtLogo;
 
-  // Actions.
-  QAction *acFileNew;
-  QAction *acFileOpen;
-  QAction *acFileSave;
-  QAction *acFileSaveAs;
-  QAction *acFileClose;
-  QAction *acFileExit;
+		// Actions.
+		QAction *acFileNew;
+		QAction *acFileOpen;
+		QAction *acFileSave;
+		QAction *acFileSaveAs;
+		QAction *acFileClose;
+		QAction *acFileExit;
 
-  QAction *acVideoBackward;
-  QAction *acVideoPlay;
-  QAction *acVideoForward;
-  QAction *acVideoStop;
-  QAction *acVideoLoop;
-  QAction *acVideoLock;
-  QAction *acVideoCenter;
+		QAction *acVideoBackward;
+		QAction *acVideoPlay;
+		QAction *acVideoForward;
+		QAction *acVideoStop;
+		QAction *acVideoLoop;
+		QAction *acVideoLock;
+		QAction *acVideoCenter;
 
-  QAction *acViewMenuBar;
-  QAction *acViewTBarFile;
-  QAction *acViewTBarVideo;
-  QAction *acViewStatusBar;
-  QAction *acViewFullScreen;
+		QAction *acViewMenuBar;
+		QAction *acViewTBarFile;
+		QAction *acViewTBarVideo;
+		QAction *acViewStatusBar;
+		QAction *acViewFullScreen;
 
-  QAction *acWindCascade;
-  QAction *acWindTileVer;
-  QAction *acWindTileHor;
+		QAction *acWindCascade;
+		QAction *acWindTileVer;
+		QAction *acWindTileHor;
 
-  QAction *acHelpContents;
-  QAction *acHelpAboutApp;
-  QAction *acHelpAboutQt;
-  QAction *acHelpWhatsThis;
+		QAction *acHelpContents;
+		QAction *acHelpAboutApp;
+		QAction *acHelpAboutQt;
+		QAction *acHelpWhatsThis;
 
-  // Menu.
-  QPopupMenu *pmuFile;
-  QPopupMenu *pmuVideo;
-  QPopupMenu *pmuView;
-  QPopupMenu *pmuWindow;
-  QPopupMenu *pmuHelp;
+		// Menu.
+		QPopupMenu *pmuFile;
+		QPopupMenu *pmuVideo;
+		QPopupMenu *pmuView;
+		QPopupMenu *pmuWindow;
+		QPopupMenu *pmuHelp;
 
-  QMenuBar *mbrMain;
+		QMenuBar *mbrMain;
 
-  // Toolbars.
-  QSlider  *sldFrame;
-  QLabel   *lblFrame;
-  QSpinBox *sbxFRate;
+		// Toolbars.
+		QSlider  *sldFrame;
+		QLabel   *lblFrame;
+		QSpinBox *sbxFRate;
 
-  QToolBar *tbrFile;
-  QToolBar *tbrVideo;
+		QToolBar *tbrFile;
+		QToolBar *tbrVideo;
 
-  // Workspace.
-  QVBox      *vbxCentral;
-  QWorkspace *wksCentral;
+		// Workspace.
+		QVBox      *vbxCentral;
+		QWorkspace *wksCentral;
 
-  // Frame rate estimation.
-  QTime *timFRate;
+		// Frame rate estimation.
+		QTime *timFRate;
 
-  // Video timer.
-  QTimer *tmrVideo;
-
-
-  protected slots:
-
-  void windowActivated( QWidget *wgtWindow );
-
-  void fileNew   ( void );
-  void fileOpen  ( void );
-  void fileSave  ( void );
-  void fileSaveAs( void );
-  void fileClose ( void );
-  void fileExit  ( void );
-
-  void changeFrequency( int iFrequency );
-
-  void showFrame( int iFrame );
-  void playFrame( void );
-
-  void videoBackward( void );
-  void videoPlay    ( void );
-  void videoForward ( void );
-  void videoStop    ( void );
-  void videoLoop    ( bool bState );
-  void videoLock    ( bool bState );
-  void videoCenter  ( void );
-
-  void viewMenuBar   ( bool bState );
-  void viewTBarFile  ( bool bState );
-  void viewTBarVideo ( bool bState );
-  void viewStatusBar ( bool bState );
-  void viewFullScreen( bool bState );
-
-  void menuWindowActivated( int iMenuID );
-  void menuWindowAboutToShow( void );
-
-  void windCascade( void );
-  void windTileVer( void );
-  void windTileHor( void );
-
-  void helpContents( void );
-  void helpAboutApp( void );
-  void helpAboutQt ( void );
+		// Video timer.
+		QTimer *tmrVideo;
 
 
-  protected:
+	protected slots:
 
-  QWorkspace * workspace( void ) const { return wksCentral; };
+		void windowActivated( QWidget *wgtWindow );
 
-  void languageChange( void );
+		void fileNew   ( void );
+		void fileOpen  ( void );
+		void fileSave  ( void );
+		void fileSaveAs( void );
+		void fileClose ( void );
+		void fileExit  ( void );
 
-  void closeEvent( QCloseEvent *evClose );
+		void changeFrequency( int iFrequency );
 
-  void computeFrameRate( int iNumFrames, int iMillisecs );
+		void showFrame( int iFrame );
+		void playFrame( void );
 
-  CLPlayerDoc * newDoc( void );
+		void videoBackward( void );
+		void videoPlay    ( void );
+		void videoForward ( void );
+		void videoStop    ( void );
+		void videoLoop    ( bool bState );
+		void videoLock    ( bool bState );
+		void videoCenter  ( void );
+
+		void viewMenuBar   ( bool bState );
+		void viewTBarFile  ( bool bState );
+		void viewTBarVideo ( bool bState );
+		void viewStatusBar ( bool bState );
+		void viewFullScreen( bool bState );
+
+		void menuWindowActivated( int iMenuID );
+		void menuWindowAboutToShow( void );
+
+		void windCascade( void );
+		void windTileVer( void );
+		void windTileHor( void );
+
+		void helpContents( void );
+		void helpAboutApp( void );
+		void helpAboutQt ( void );
 
 
-  public:
+	protected:
 
-  void helpCmdLine( void );
+		QWorkspace * workspace( void ) const { return wksCentral; };
 
-  void parseCmdLine( int iArgC, char *a_szArgV[] );
+		void languageChange( void );
 
-  CLPlayerWin( QWidget *wgtParent = NULL, const char *szName = NULL,
-               WFlags fl = WType_TopLevel );
+		void closeEvent( QCloseEvent *evClose );
 
-  virtual ~CLPlayerWin( void );
+		void computeFrameRate( int iNumFrames, int iMillisecs );
+
+		CLPlayerDoc * newDoc( void );
+
+
+	public:
+
+		void helpCmdLine( void );
+
+		void parseCmdLine( int iArgC, char *a_szArgV[] );
+
+		CLPlayerWin( QWidget *wgtParent = NULL, const char *szName = NULL,
+				WFlags fl = WType_TopLevel );
+
+		virtual ~CLPlayerWin( void );
 }; // End of class CLPlayerWin.
 
 #endif // CLPLAYERWIN_H
