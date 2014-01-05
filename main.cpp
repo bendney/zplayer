@@ -65,7 +65,6 @@ int main(int iArgC, char *a_szArgV[])
 	iRet = appPlayer->exec( );
 
 	// Delete application and exit.
-
 	delete appPlayer;
 
 	return iRet;
