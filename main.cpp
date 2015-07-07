@@ -50,19 +50,19 @@ int main(int iArgC, char *a_szArgV[])
 	QApplication *appPlayer;
 	CLPlayerWin  *winPlayer; // ZPlayer window.
 
-	appPlayer = new QApplication( iArgC, a_szArgV );
+	appPlayer = new QApplication(iArgC, a_szArgV);
 
 	// Create main widget.
-	winPlayer = new CLPlayerWin( NULL, szName );
+	winPlayer = new CLPlayerWin(NULL, szName);
 
 	// Show window.
-	appPlayer->setMainWidget( winPlayer );
+	appPlayer->setMainWidget(winPlayer);
 
-	winPlayer->parseCmdLine( iArgC, a_szArgV );
-	winPlayer->show( );
+	winPlayer->parseCmdLine(iArgC, a_szArgV);
+	winPlayer->show();
 
 	// Process events.
-	iRet = appPlayer->exec( );
+	iRet = appPlayer->exec();
 
 	// Delete application and exit.
 	delete appPlayer;
