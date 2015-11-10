@@ -1,0 +1,24 @@
+iptsec_debug.lo: iptsec_debug.c /usr/include/stdc-predef.h ../../config.h \
+ /usr/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/include/stddef.h \
+ iptsec_debug.h ../su/sofia-sip/su_log.h \
+ /usr/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/include/stdarg.h \
+ ../su/sofia-sip/su_config.h ../su/sofia-sip/su_configure.h \
+ ../su/sofia-sip/su_debug.h
+
+/usr/include/stdc-predef.h:
+
+../../config.h:
+
+/usr/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/include/stddef.h:
+
+iptsec_debug.h:
+
+../su/sofia-sip/su_log.h:
+
+/usr/lib/gcc/x86_64-unknown-linux-gnu/5.2.0/include/stdarg.h:
+
+../su/sofia-sip/su_config.h:
+
+../su/sofia-sip/su_configure.h:
+
+../su/sofia-sip/su_debug.h:
