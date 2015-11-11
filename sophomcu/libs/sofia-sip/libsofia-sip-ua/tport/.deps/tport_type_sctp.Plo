@@ -1,6 +1,0 @@
-tport_type_sctp.lo: tport_type_sctp.c /usr/include/stdc-predef.h \
- ../../config.h
-
-/usr/include/stdc-predef.h:
-
-../../config.h:
